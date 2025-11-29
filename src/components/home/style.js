@@ -66,7 +66,11 @@ const Wrapper = styled.section`
     font-size: 18px;
     margin-top: 15px;
     max-width: 600px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
+
 
   /* Slogan Section */
   .slogan {
@@ -229,7 +233,10 @@ const Wrapper = styled.section`
     font-weight: bold;
   }
 
-  /* ✅ Responsive Media Queries */
+  /* ============================================
+     RESPONSIVE FIXES FOR HERO CENTERING
+     ============================================ */
+
   @media (max-width: 992px) {
     .title {
       font-size: 50px;
@@ -255,7 +262,15 @@ const Wrapper = styled.section`
     }
   }
 
+  /* TABLET FIX */
   @media (max-width: 768px) {
+    .overlay {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 15px;
+    }
+
     .title {
       font-size: 36px;
     }
@@ -285,14 +300,26 @@ const Wrapper = styled.section`
     }
   }
 
+  /* MOBILE FIX */
   @media (max-width: 480px) {
+    .overlay {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10px;
+    }
+
     .title {
       font-size: 28px;
       letter-spacing: 1px;
     }
-    .desc {
-      font-size: 12px;
-    }
+    @media (max-width: 480px) {
+  .desc {
+    max-width: 90%;
+    overflow-wrap: break-word;
+  }
+}
+
     .slogan-content {
       font-size: 16px;
     }

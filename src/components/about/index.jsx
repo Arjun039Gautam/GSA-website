@@ -1,6 +1,8 @@
 import React from "react";
 import Wrapper from "./style";
-import aboutImg from "../images/for now final logo.png"; // replace with a better quality sculpture/workshop image
+import factoryImg from "../images/factoryImg.jpeg"
+import showroomImg from "../images/showroom1.jpg";
+import workersImg from "../images/showroom2.jpg"; 
 import { FaAward, FaPaintBrush, FaGlobe } from "react-icons/fa";
 
 const About = () => {
@@ -14,7 +16,11 @@ const About = () => {
       <div className="content">
         {/* Left Image */}
         <div className="aboutImg">
-          <img src={aboutImg} alt="About Us" />
+          <div className="img-grid">
+            <img src={factoryImg} alt="Factory" className="img img1" />
+            <img src={showroomImg} alt="Showroom" className="img img2" />
+            <img src={workersImg} alt="Workers" className="img img3" />
+          </div>
         </div>
 
         {/* Right Text */}

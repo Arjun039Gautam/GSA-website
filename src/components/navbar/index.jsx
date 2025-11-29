@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Wrapper from "./style";
 import logo from "../images/for now final logo.png";
 import { NavLink } from "react-router-dom";
@@ -10,104 +10,134 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  /* Close mobile menu when clicking outside */
+  useEffect(() => {
+    const closeMenu = (e) => {
+      if (
+        !e.target.closest(".nav-links") &&
+        !e.target.closest(".hamburger")
+      ) {
+        setIsMobileMenuOpen(false);
+        setOpenDropdown(false);
+      }
+    };
+    document.addEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, []);
+
+  /* Close menu on route change */
+  const closeMenuOnClick = () => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(false);
+  };
+
   return (
-    <>
-      <Wrapper>
-        {/* Logo */}
-        <div className="logo">
-          <img src={logo} alt="GSA Logo" />
-          <h2>Gautam Stone Art</h2>
-        </div>
+    <Wrapper>
+      {/* Background overlay when menu is open */}
+      <div
+        className={`menu-overlay ${isMobileMenuOpen ? "open" : ""}`}
+      ></div>
 
-        {/* Hamburger */}
-        <div
-          className="hamburger"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-        </div>
+      {/* Logo */}
+      <div className="logo">
+        <img src={logo} alt="GSA Logo" />
+        <h2>Gautam Stone Art</h2>
+      </div>
 
-        {/* Nav Links */}
-        <ul className={`nav-links ${isMobileMenuOpen ? "open" : ""}`}>
-          <li>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) => (isActive ? "active" : "")}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              HOME
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/our-story"
-              className={({ isActive }) => (isActive ? "active" : "")}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              OUR STORY
-            </NavLink>
-          </li>
+      {/* Hamburger */}
+      <div
+        className="hamburger"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        {isMobileMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+      </div>
 
-          <li
-            className="dropdown"
-            onMouseEnter={() => setOpenDropdown(true)}
-            onMouseLeave={() => setOpenDropdown(false)}
+      {/* NAV LINKS */}
+      <ul className={`nav-links ${isMobileMenuOpen ? "open" : ""}`}>
+        <li>
+          <NavLink
+            to="/"
+            end
+            onClick={closeMenuOnClick}
+            className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <span>COLLECTIONS ▾</span>
-            <ul className={`dropdown-menu ${openDropdown ? "open" : ""}`}>
-              <li><NavLink to="/god-collection">God Idols</NavLink></li>
-              <li><NavLink to="/lion-collection">Lion Statues</NavLink></li>
-              <li><NavLink to="/horse-collection">Horse Statues</NavLink></li>
-              <li><NavLink to="/cow-collection">Cow Statues</NavLink></li>
-              <li><NavLink to="/elephant-collection">Elephant Statues</NavLink></li>
-              <li><NavLink to="/dog-collection">Dog Statues</NavLink></li>
-              <li><NavLink to="/tortoise-collection">Tortoise Statues</NavLink></li>
-              <li><NavLink to="/modern-art-collection">Modern Art</NavLink></li>
-              <li><NavLink to="/panel-collection">Wall Panels</NavLink></li>
-              <li><NavLink to="/creative-collection">Creative Designs</NavLink></li>
-            </ul>
-          </li>
+            HOME
+          </NavLink>
+        </li>
 
-          <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => (isActive ? "active" : "")}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              REACH US
-            </NavLink>
-          </li>
+        <li>
+          <NavLink
+            to="/our-story"
+            onClick={closeMenuOnClick}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            OUR STORY
+          </NavLink>
+        </li>
 
-          {/* Mobile-only Quote Button */}
-          <li className="mobile-quote">
-            <button
-              className="getquote"
-              onClick={() => {
-                setIsModalOpen(true);
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Get a quote
-            </button>
-          </li>
-        </ul>
-
-        {/* Desktop Quote Button */}
-        <button
-          className="getquote desktop-quote"
-          onClick={() => {
-            setIsModalOpen(true);
-            setIsMobileMenuOpen(false);
-          }}
+        {/* DROPDOWN */}
+        <li
+          className="dropdown"
+          onClick={() => setOpenDropdown(!openDropdown)}
         >
-          Get a quote
-        </button>
-      </Wrapper>
+          <span>COLLECTIONS ▾</span>
+          <ul className={`dropdown-menu ${openDropdown ? "open" : ""}`}>
+            {[
+              "god-collection",
+              "lion-collection",
+              "horse-collection",
+              "cow-collection",
+              "elephant-collection",
+              "dog-collection",
+              // "tortoise-collection",
+              "modern-art-collection",
+              "panel-collection",
+              // "creative-collection",
+            ].map((path) => (
+              <li key={path}>
+                <NavLink to={`/${path}`} onClick={closeMenuOnClick}>
+                  {path.replace("-", " ").toUpperCase()}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </li>
 
-      {/* Modal */}
+        <li>
+          <NavLink
+            to="/contact"
+            onClick={closeMenuOnClick}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            REACH US
+          </NavLink>
+        </li>
+
+        {/* MOBILE QUOTE BUTTON */}
+        <li className="mobile-quote">
+          <button
+            className="getquote"
+            onClick={() => {
+              setIsModalOpen(true);
+              closeMenuOnClick();
+            }}
+          >
+            Get a quote
+          </button>
+        </li>
+      </ul>
+
+      {/* DESKTOP QUOTE BUTTON */}
+      <button
+        className="getquote desktop-quote"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Get a quote
+      </button>
+
+      {/* MODAL */}
       <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </>
+    </Wrapper>
   );
 };
 

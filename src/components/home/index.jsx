@@ -46,7 +46,7 @@ const Home = () => {
     <Wrapper>
       {/* Background Video */}
       <video autoPlay muted loop playsInline className="bg-video">
-        <source src="hero section - Made with Clipchamp (1).mp4" type="video/mp4" />
+        <source src="hero section gsa main.mp4" type="video/mp4" />
       </video>
 
       {/* Hero Section */}

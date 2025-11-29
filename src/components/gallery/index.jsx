@@ -13,14 +13,14 @@ const Gallery = () => {
   const cards = [
     { id: 1, img: '/web-god/4.png', title: "Divine Gods", desc: "Tap for more", link: "/god-collection" },
     { id: 2, img: '/web-lion/1.png', title: "Lion Pride", desc: "Tap for more", link: "/lion-collection" },
-    { id: 3, img: '/web-horse/3.png', title: "Royal Horses", desc: "Tap for more", link: "/horse-collection" },
+    { id: 3, img: '/web-horse/1.png', title: "Royal Horses", desc: "Tap for more", link: "/horse-collection" },
     { id: 4, img: '/web-cow/1.png', title: "Sacred Cows", desc: "Tap for more", link: "/cow-collection" },
     { id: 5, img: '/web-elephant/3.png', title: "Majestic Elephants", desc: "Tap for more", link: "/elephant-collection" },
     { id: 6, img: '/web-dog/8.png', title: "Faithful Dogs", desc: "Tap for more", link: "/dog-collection" },
-    { id: 7, img: horseImg, title: "Lucky Tortoise", desc: "Tap for more", link: "/tortoise-collection" },
+    // { id: 7, img: horseImg, title: "Lucky Tortoise", desc: "Tap for more", link: "/tortoise-collection" },
     { id: 8, img: '/modern art web/1.png', title: "Modern Creations", desc: "Tap for more", link: "/modern-art-collection" },
-    { id: 9, img: horseImg, title: "Wall Panels", desc: "Tap for more", link: "/panel-collection" },
-    { id: 10, img: horseImg, title: "Creative Touch", desc: "Tap for more", link: "/creative-collection" },
+    { id: 9, img: '/web-horse/3.png', title: "Wall Panels", desc: "Tap for more", link: "/panel-collection" },
+    // { id: 10, img: horseImg, title: "Creative Touch", desc: "Tap for more", link: "/creative-collection" },
   ];
 
   return (

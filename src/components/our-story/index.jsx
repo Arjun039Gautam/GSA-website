@@ -18,7 +18,7 @@ const OurStory = () => {
         {/* Part 1 */}
         <div className="story-block fade-left">
           <div className="story-date">~125 Years Ago</div>
-          <img src="Nanaji Ustaad Mali Ram Ji.jpeg" alt="Mali Ram ji" />
+          <img src="nanaji2.png" alt="Mali Ram ji" />
           <div className="story-content">
             <h3>A Legacy in Stone</h3>
             <p>
@@ -30,7 +30,7 @@ const OurStory = () => {
         {/* Part 2 */}
         <div className="story-block reverse fade-right">
           <div className="story-date">~75 Years Ago</div>
-          <img src='Suraj ram ji 2.png' alt="Suraj Ram ji" />
+          <img src='dadaji.png' alt="Suraj Ram ji" />
           <div className="story-content">
             <h3>The Vision of Gautam Stone Art</h3>
             <p>
@@ -50,7 +50,7 @@ const OurStory = () => {
             </p>
           </div>
         </div>
-        <img src="collage.png" alt="" />
+        {/* <img src="collage.png" alt="" /> */}
       </div>
     </Wrapper>
   );
