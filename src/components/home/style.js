@@ -27,7 +27,16 @@ const Wrapper = styled.section`
     text-align: center;
     color: #fff;
     position: relative;
-    padding: 0 20px;
+    /* padding: 0 20px;  */
+  }
+  
+  /* Add a centered container for the main text to guarantee symmetry */
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%; /* Prevent content from stretching too wide on large screens */
+    margin: 0 auto;
   }
 
   .social-img {
@@ -48,30 +57,42 @@ const Wrapper = styled.section`
     transform: scale(1.1);
   }
 
+  /* Note: The logo part is missing from the component but kept here for reference
   .logo img {
     width: 70px;
     position: absolute;
     top: 20px;
     left: 20px;
   }
+  */
 
   .title {
     font-size: 70px;
     letter-spacing: 3px;
     margin: 0;
     padding: 0;
+    /* Ensure title is horizontally centered */
+    width: 100%; 
+    max-width: 1200px; /* Constrain max width for better centering */
   }
 
   .desc {
     font-size: 18px;
     margin-top: 15px;
-    max-width: 600px;
+    max-width: 600px; /* This is good for line length */
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+    /* The combination of margin: auto and text-align: center should center it */
+    margin-left: auto;
+    margin-right: auto;
   }
 
 
+  /* Slogan Section */
+  /* ... (Rest of the CSS remains unchanged for non-Hero sections) ... */
+  
+  
   /* Slogan Section */
   .slogan {
     display: flex;
@@ -234,8 +255,8 @@ const Wrapper = styled.section`
   }
 
   /* ============================================
-     RESPONSIVE FIXES FOR HERO CENTERING
-     ============================================ */
+    RESPONSIVE FIXES 
+    ============================================ */
 
   @media (max-width: 992px) {
     .title {
@@ -268,7 +289,7 @@ const Wrapper = styled.section`
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 15px;
+      /* padding: 0 15px; */
     }
 
     .title {
@@ -306,19 +327,18 @@ const Wrapper = styled.section`
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 10px;
+      /* padding: 0 10px; */
     }
 
     .title {
       font-size: 28px;
       letter-spacing: 1px;
     }
-    @media (max-width: 480px) {
-  .desc {
-    max-width: 90%;
-    overflow-wrap: break-word;
-  }
-}
+    /* FIX: Re-applying padding for desc on small screens */
+    .desc {
+      max-width: 90%;
+      overflow-wrap: break-word;
+    }
 
     .slogan-content {
       font-size: 16px;

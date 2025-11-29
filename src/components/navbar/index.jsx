@@ -1,63 +1,99 @@
 import React, { useState, useEffect } from "react";
 import Wrapper from "./style";
 import logo from "../images/for now final logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom"; // 👈 Import useLocation
 import QuoteModal from "../get-quote/QuoteModal.jsx";
 import { FiMenu, FiX } from "react-icons/fi";
+
+// List of all collection paths for easy checking
+const COLLECTION_PATHS = [
+    "/god-collection",
+    "/lion-collection",
+    "/horse-collection",
+    "/cow-collection",
+    "/elephant-collection",
+    "/dog-collection",
+    "/modern-art-collection",
+    "/panel-collection",
+];
 
 const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  /* Close mobile menu when clicking outside */
-  useEffect(() => {
-    const closeMenu = (e) => {
-      if (
-        !e.target.closest(".nav-links") &&
-        !e.target.closest(".hamburger")
-      ) {
-        setIsMobileMenuOpen(false);
-        setOpenDropdown(false);
-      }
-    };
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, []);
+  const location = useLocation(); // 👈 Use the location hook
 
-  /* Close menu on route change */
-  const closeMenuOnClick = () => {
+  /* Check if any collection route is currently active */
+  const isCollectionActive = COLLECTION_PATHS.some(path => 
+    location.pathname.startsWith(path)
+  );
+    
+  // ... (rest of the state and helper functions remain the same) ...
+
+  const closeAllMenus = () => {
     setIsMobileMenuOpen(false);
     setOpenDropdown(false);
   };
+  
+  useEffect(() => {
+    const closeMenu = (e) => {
+      if (
+        isMobileMenuOpen &&
+        !e.target.closest(".nav-links") &&
+        !e.target.closest(".hamburger")
+      ) {
+        closeAllMenus();
+      }
+    };
+    document.addEventListener("mousedown", closeMenu);
+    return () => document.removeEventListener("mousedown", closeMenu);
+  }, [isMobileMenuOpen]); 
+
+  const closeMenuOnClick = () => {
+    closeAllMenus();
+  };
+  
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (isMobileMenuOpen) {
+      setOpenDropdown(false);
+    }
+  };
+
+  const toggleDropdown = (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setOpenDropdown(!openDropdown);
+  };
+
 
   return (
     <Wrapper>
-      {/* Background overlay when menu is open */}
+      {/* ... (Menu Overlay, Logo, Hamburger) ... */}
       <div
         className={`menu-overlay ${isMobileMenuOpen ? "open" : ""}`}
       ></div>
 
-      {/* Logo */}
       <div className="logo">
         <img src={logo} alt="GSA Logo" />
         <h2>Gautam Stone Art</h2>
       </div>
 
-      {/* Hamburger */}
       <div
         className="hamburger"
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        onClick={toggleMobileMenu}
       >
         {isMobileMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
       </div>
-
+      
       {/* NAV LINKS */}
       <ul className={`nav-links ${isMobileMenuOpen ? "open" : ""}`}>
         <li>
           <NavLink
             to="/"
-            end
+            end // IMPORTANT: ensures HOME is only active at the root path "/"
             onClick={closeMenuOnClick}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
@@ -75,28 +111,17 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        {/* DROPDOWN */}
+        {/* DROPDOWN - Apply 'active' class manually based on current path */}
         <li
-          className="dropdown"
-          onClick={() => setOpenDropdown(!openDropdown)}
+          className={`dropdown ${isCollectionActive ? "active" : ""}`} // 👈 Apply active class here
+          onClick={toggleDropdown}
         >
-          <span>COLLECTIONS ▾</span>
+          <span className={isCollectionActive ? "active" : ""}>COLLECTIONS ▾</span> {/* 👈 And here for span style */}
           <ul className={`dropdown-menu ${openDropdown ? "open" : ""}`}>
-            {[
-              "god-collection",
-              "lion-collection",
-              "horse-collection",
-              "cow-collection",
-              "elephant-collection",
-              "dog-collection",
-              // "tortoise-collection",
-              "modern-art-collection",
-              "panel-collection",
-              // "creative-collection",
-            ].map((path) => (
+            {COLLECTION_PATHS.map((path) => (
               <li key={path}>
-                <NavLink to={`/${path}`} onClick={closeMenuOnClick}>
-                  {path.replace("-", " ").toUpperCase()}
+                <NavLink to={path} onClick={closeMenuOnClick}>
+                  {path.replace("/", "").replace("-", " ").toUpperCase()}
                 </NavLink>
               </li>
             ))}
@@ -113,21 +138,20 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        {/* MOBILE QUOTE BUTTON */}
+        {/* ... (Mobile Quote Button, Desktop Quote Button, Modal) ... */}
         <li className="mobile-quote">
-          <button
-            className="getquote"
-            onClick={() => {
-              setIsModalOpen(true);
-              closeMenuOnClick();
-            }}
-          >
-            Get a quote
-          </button>
+            <button
+                className="getquote"
+                onClick={() => {
+                    setIsModalOpen(true);
+                    closeMenuOnClick();
+                }}
+            >
+                Get a quote
+            </button>
         </li>
       </ul>
 
-      {/* DESKTOP QUOTE BUTTON */}
       <button
         className="getquote desktop-quote"
         onClick={() => setIsModalOpen(true)}
@@ -135,7 +159,6 @@ const Navbar = () => {
         Get a quote
       </button>
 
-      {/* MODAL */}
       <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </Wrapper>
   );
