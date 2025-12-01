@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-lion/1.png', '/web-lion/2.png', '/web-lion/3.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581862/1_jnoyic.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581855/2_lwfgzh.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581939/3_kyyilw.png'],
       title: "Lion Pair",
       desc: [
         "White marble finish",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-lion/4.png', '/web-lion/5.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581943/4_yezbue.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581984/5_be6arv.png'],
       title: "Grey Lions",
       desc: [
         "Textured grey marble",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-lion/6.png', '/web-lion/8.png', '/web-lion/7.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581976/6_fogrfv.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581982/8_w4hibk.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581960/7_nmcdzk.png'],
       title: "Lion Statue",
       desc: [
         "White marble finish",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/web-lion/9.png', '/web-lion/10.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581969/9_y6uz92.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581971/10_ge8hsq.png'],
       title: "Roaring Lion",
       desc: [
         "White marble finish",
@@ -49,7 +49,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-lion/11.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581976/11_znlxtn.png'],
       title: "Lion Pair",
       desc: [
         "Polished marble finish",
@@ -59,7 +59,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['/web-lion/12.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581986/12_eyo6fg.pngg'],
       title: "Lion Guard",
       desc: [
         "Textured black stone",
@@ -69,7 +69,7 @@ const HorseCollection = () => {
     },
     {
       id: 7,
-      images: ['/web-lion/13.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581979/13_ni9uku.png'],
       title: "Lion Panel",
       desc: [
         "White marble panel",

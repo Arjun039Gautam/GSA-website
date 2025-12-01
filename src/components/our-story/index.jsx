@@ -1,6 +1,5 @@
 import React from "react";
 import Wrapper from "./style";
-import profile from "../images/person_16dp_0B2239_FILL0_wght400_GRAD0_opsz20.png";
 
 const OurStory = () => {
   return (
@@ -18,7 +17,7 @@ const OurStory = () => {
         {/* Part 1 */}
         <div className="story-block fade-left">
           <div className="story-date">~125 Years Ago</div>
-          <img src="nanaji2.png" alt="Mali Ram ji" />
+          <img src="https://res.cloudinary.com/dancodp27/image/upload/v1764582029/nanaji2_c5g6xi.png" alt="Mali Ram ji" />
           <div className="story-content">
             <h3>A Legacy in Stone</h3>
             <p>
@@ -30,7 +29,7 @@ const OurStory = () => {
         {/* Part 2 */}
         <div className="story-block reverse fade-right">
           <div className="story-date">~75 Years Ago</div>
-          <img src='dadaji.png' alt="Suraj Ram ji" />
+          <img src='https://res.cloudinary.com/dancodp27/image/upload/v1764582425/dadaji_o1z5qm.png' alt="Suraj Ram ji" />
           <div className="story-content">
             <h3>The Vision of Gautam Stone Art</h3>
             <p>
@@ -42,7 +41,7 @@ const OurStory = () => {
         {/* Part 3 */}
         <div className="story-block fade-up">
           <div className="story-date">Today</div>
-          <img src="\Sanjay-Gautam-img.png" alt="Sanjay Gautam ji" />
+          <img src="https://res.cloudinary.com/dancodp27/image/upload/v1764582018/Sanjay-Gautam-img_hep1ff.png" alt="Sanjay Gautam ji" />
           <div className="story-content">
             <h3>Modern Legacy</h3>
             <p>

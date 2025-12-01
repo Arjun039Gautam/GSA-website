@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-lion/13.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581979/13_ni9uku.png'],
       title: "Lion Panel",
       desc: [
         "White marble panel",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-horse/3.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581750/3_ijkt1e.png'],
       title: "Horse Panel",
       desc: [
         "Polished white marble",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-horse/4.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581760/4_itny4y.png'],
       title: "Equine Elegance",
       desc: [
         "Smooth marble relief",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/web-cow/4.png', '/web-cow/5.png',],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581314/4_l2hqok.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581314/5_exq7ib.png',],
       title: "Marble Cow Head Wall Fountain",
       desc: [
         "Handcrafted white marble cow head panel",
@@ -49,7 +49,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-dog/5.png', '/web-dog/6.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581400/5_jlj0p6.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581409/6_cbkgox.png'],
       title: "German Shepherd Bust",
       desc: [
         "White marble dog head",

@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-horse/3.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581750/3_ijkt1e.png'],
       title: "Horse Panel",
       desc: [
         "Polished white marble",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-horse/7.png', '/web-horse/6.png','/web-horse/5.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581766/7_pqy5ei.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581777/6_pkks77.png','https://res.cloudinary.com/dancodp27/image/upload/v1764581774/5_ojnhry.png'],
       title: "Horse Pair",
       desc: [
         "Glossy black stone",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-horse/9.png', '/web-horse/10.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581777/9_egjhxj.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581796/10_s2ub2h.png'],
       title: "Horse Idol",
       desc: [
         "White marble polish",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/web-horse/1.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581731/1_kdbdjz.png'],
       title: "Horse Statue",
       desc: [
         "White marble finish",
@@ -49,7 +49,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-horse/8.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581806/8_pkwkaw.png'],
       title: "Golden Horse",
       desc: [
         "Polished brown marble",
@@ -59,7 +59,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['/web-horse/14.png', '/web-horse/15.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581801/14_w1kuvt.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581809/15_sxv6ny.png'],
       title: "Ivory Trail",
       desc: [
         "Smooth marble finish",
@@ -69,7 +69,7 @@ const HorseCollection = () => {
     },
     {
       id: 7,
-      images: ['/web-horse/12.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581801/12_eadvgs.png'],
       title: "Silent Grace",
       desc: [
         "Minimal marble finish",
@@ -79,7 +79,7 @@ const HorseCollection = () => {
     },
     {
       id: 8,
-      images: ['/web-horse/2.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581744/2_twgxdb.png'],
       title: "Bonded Bliss",
       desc: [
         "White marble sculpture",
@@ -89,7 +89,7 @@ const HorseCollection = () => {
     },
     {
       id: 9,
-      images: ['/web-horse/13.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581801/13_h0onhv.png'],
       title: "Momentum",
       desc: [
         "Glossy marble finish",
@@ -99,7 +99,7 @@ const HorseCollection = () => {
     },
     {
       id: 10,
-      images: ['/web-horse/11.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581804/11_tv1bux.png'],
       title: "Serene Spirit",
       desc: [
         "White marble polish",
@@ -109,7 +109,7 @@ const HorseCollection = () => {
     },
     {
       id: 11,
-      images: ['/web-horse/4.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581760/4_itny4y.png'],
       title: "Equine Elegance",
       desc: [
         "Smooth marble relief",

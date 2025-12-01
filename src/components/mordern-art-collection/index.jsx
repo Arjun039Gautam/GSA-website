@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Wrapper from "./style";
-import firstimg from '../images/modern art web.png'
 
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -10,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/modern art web/1.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581171/1_jyi1ax.png'],
       title: "Sculpted Minimal Tower",
       desc: [
         "Modern marble abstract",
@@ -20,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/modern art web/2.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581171/2_jcj07e.png'],
       title: "Flowing Motion Sculpture",
       desc: [
         "Abstract marble form",
@@ -30,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/modern art web/3.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581173/3_ii8pwr.png'],
       title: "Embrace Figurine",
       desc: [
         "Abstract couple design",
@@ -40,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/modern art web/4.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581193/4_v1sqmd.png'],
       title: "Marble Flame Abstract",
       desc: [
         "Fluid modern art piece",
@@ -51,7 +50,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/modern art web/5.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581192/5_ixlv7u.png'],
       title: "Spiral Modern Accent",
       desc: [
         "Abstract spiral design",
@@ -61,7 +60,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['/modern art web/6.png', '/modern art web/7.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581189/6_an500f.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581178/7_zzsh3f.png'],
       title: "Curved Modern Form",
       desc: [
         "Textured grey finish",
@@ -71,7 +70,7 @@ const HorseCollection = () => {
     },
     {
       id: 7,
-      images: ['/modern art web/8.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581189/8_ipltzu.png'],
       title: "Infinity Twist Sculpture",
       desc: [
         "Smooth marble curves",
@@ -81,7 +80,7 @@ const HorseCollection = () => {
     },
     {
       id: 8,
-      images: ['/modern art web/9.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581189/9_y86wkx.png'],
       title: "Minimal Ganesha Idol",
       desc: [
         "Contemporary Ganesha form",
@@ -91,7 +90,7 @@ const HorseCollection = () => {
     },
     {
       id: 9,
-      images: ['/modern art web/10.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581206/10_n42nq8.png'],
       title: "Modern Ganesha Silhouette",
       desc: [
         "Stylized elephant head",
@@ -101,7 +100,7 @@ const HorseCollection = () => {
     },
     {
       id: 10,
-      images: ['/modern art web/11.png', '/modern art web/12.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581205/11_gnakub.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581208/12_dfibaw.png'],
       title: "Contemporary Ganesh Idol",
       desc: [
         "Modern marble Ganesha",
