@@ -46,7 +46,7 @@ const Home = () => {
     <Wrapper>
       {/* Background Video */}
       <video autoPlay muted loop playsInline className="bg-video">
-        <source src="hero section gsa main.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dancodp27/video/upload/v1764582233/hero_section_gsa_main_nyqexh.mp4" type="video/mp4" />
       </video>
 
       {/* Hero Section */}
@@ -135,7 +135,7 @@ const Home = () => {
           transition={{ duration: 0.3 }}
         >
           <video
-            src="web-short-video-2.mp4"
+            src="https://res.cloudinary.com/dancodp27/video/upload/v1764582043/web-short-video-2_o3gmcc.mp4"
             autoPlay
             loop
             muted

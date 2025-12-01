@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-dog/8.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581409/8_ty4dxm.png'],
       title: "Marble Dog Sculpture",
       desc: [
         "Detailed stone carving",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-dog/4.png', '/web-dog/3.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581392/4_dmyctd.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581398/3_wnct3p.png'],
       title: "Marble Dog Pair",
       desc: [
         "White marble finish",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-dog/5.png', '/web-dog/6.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581400/5_jlj0p6.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581409/6_cbkgox.png'],
       title: "German Shepherd Bust",
       desc: [
         "White marble dog head",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/web-dog/7.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581389/7_btkvwf.png'],
       title: "Black Marble Dog",
       desc: [
         "Lifelike seated posture",
@@ -49,7 +49,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-dog/2.png', '/web-dog/1.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581389/2_rq6gw1.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581367/1_nc1rwd.png'],
       title: "Seated Dog Pair",
       desc: [
         "White marble pair",
@@ -59,7 +59,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['/web-dog/9.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581404/9_kutuqm.png'],
       title: "Bulldog with Jersey",
       desc: [
         "Custom marble dog",

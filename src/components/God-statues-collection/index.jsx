@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-god/1.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581636/1_b5o8pj.png'],
       title: "Ganesh Ji Idol",
       desc: [
         "Black marble finish",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-god/2.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581635/2_qcd0h6.png'],
       title: "Ram Darbar",
       desc: [
         "White marble finish",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-god/3.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581663/3_txlkuj.png'],
       title: "Seated Ram Darbar",
       desc: [
         "Polished white marble",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/web-god/4.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581647/4_lwcp1w.png'],
       title: "Shiv Parivar",
       desc: [
         "Pure white marble",
@@ -49,7 +49,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-god/5.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581660/5_dn4ywp.png'],
       title: "Shiv Parvati Ji",
       desc: [
         "White marble finish",
@@ -59,7 +59,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['/web-god/6.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581652/6_mujezx.png'],
       title: "Radha Krishna Ji",
       desc: [
         "White marble finish",
@@ -69,7 +69,7 @@ const HorseCollection = () => {
     },
     {
       id: 7,
-      images: ['/web-god/7.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581662/7_wviq0v.png'],
       title: "Krishna Radha Ji",
       desc: [
         "Smooth white marble",
@@ -79,7 +79,7 @@ const HorseCollection = () => {
     },
     {
       id: 8,
-      images: ['/web-god/8.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581663/8_zkzikv.png'],
       title: "Ganesh Ji Idol",
       desc: [
         "White marble finish",
@@ -89,7 +89,7 @@ const HorseCollection = () => {
     },
     {
       id: 9,
-      images: ['/web-god/9.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581673/9_qbk2w1.png'],
       title: "White Ganesh Ji",
       desc: [
         "Polished white marble",
@@ -99,7 +99,7 @@ const HorseCollection = () => {
     },
     {
       id: 10,
-      images: ['/web-god/10.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581682/10_mas6fs.png'],
       title: "Ganesh Ji Idol",
       desc: [
         "Glossy black marble",
@@ -109,7 +109,7 @@ const HorseCollection = () => {
     },
     {
       id: 11,
-      images: ['/web-god/11.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581689/11_qkknjd.png'],
       title: "Classic Ganesh Ji",
       desc: [
         "Pure white marble",
@@ -119,7 +119,7 @@ const HorseCollection = () => {
     },
     {
       id: 12,
-      images: ['/web-god/12.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581691/12_hm3h2p.png'],
       title: "Maa Durga",
       desc: [
         "Premium marble finish",
@@ -129,7 +129,7 @@ const HorseCollection = () => {
     },
     {
       id: 13,
-      images: ['/web-god/13.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581687/13_mwwktd.png'],
       title: "Black Lakshmi Ji",
       desc: [
         "Premium black marble",

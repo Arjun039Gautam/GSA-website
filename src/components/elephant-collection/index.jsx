@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-elephant/3.png', '/web-elephant/2.png', '/web-elephant/1.png' ],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581497/3_yf2dvc.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581478/2_vfbdpu.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581487/1_qjcjy0.png' ],
       title: "Marble Elephant Pair",
       desc: [
         "Handcrafted marble",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-elephant/4.png', '/web-elephant/5.png','/web-elephant/6.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581502/4_ehsue4.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581486/5_mk6ysf.png','https://res.cloudinary.com/dancodp27/image/upload/v1764581502/6_epbv7l.png'],
       title: "Decor Elephant",
       desc: [
         "Colorful marble art",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-elephant/8.png', '/web-elephant/7.png', '/web-elephant/9.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581511/8_mij93r.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581507/7_idiiif.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581511/9_nrvdrd.png'],
       title: "Black Elephant Pair",
       desc: [
         "Matte black finish",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['/web-elephant/10.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581505/10_kfr4dl.png'],
       title: "Black Elephant Idol",
       desc: [
         "Matte stone texture",
@@ -49,7 +49,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-elephant/11.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581514/11_gc3rko.png'],
       title: "Royal Elephant Pair",
       desc: [
         "Hand-painted marble",

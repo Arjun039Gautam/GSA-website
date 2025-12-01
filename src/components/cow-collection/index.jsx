@@ -9,7 +9,7 @@ const HorseCollection = () => {
   const cards = [
     {
       id: 1,
-      images: ['/web-cow/1.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581313/1_ybxogm.png'],
       title: "Marble Cow and Calf Statue",
       desc: [
         "Polished marble finish",
@@ -19,7 +19,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-cow/2.png', '/web-cow/3.png', ],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581299/2_apdxpf.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581300/3_qzfgjl.png', ],
       title: "Marble Cow Head Sculpture",
       desc: [
         "Hand-carved white marble",
@@ -29,7 +29,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['/web-cow/4.png', '/web-cow/5.png',],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581314/4_l2hqok.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581314/5_exq7ib.png',],
       title: "Marble Cow Head Wall Fountain",
       desc: [
         "Handcrafted white marble cow head panel",
@@ -39,7 +39,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: [ '/web-cow/6.png', '/web-cow/7.png'],
+      images: [ 'https://res.cloudinary.com/dancodp27/image/upload/v1764581308/6_jmiqwi.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581313/7_p3phwz.png'],
       title: "Cow & Calf",
       desc: [
         "Polished marble",
@@ -48,7 +48,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['/web-cow/8.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581316/8_z99ubf.png'],
       title: "Harmony Bond",
       desc: [
         "Premium marble carve",
@@ -58,7 +58,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['/web-cow/9.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581322/9_gco6xc.png'],
       title: "Cow with Calf",
       desc: [
         "Classic marble craft",
@@ -68,7 +68,7 @@ const HorseCollection = () => {
     },
     {
       id: 7,
-      images: ['/web-cow/10.png'],
+      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581320/10_r3qbdt.png'],
       title: "Cow & Calf Idol",
       desc: [
         "White marble work",
