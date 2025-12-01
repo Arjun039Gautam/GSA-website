@@ -17,25 +17,27 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [scrollDir, setScrollDir] = useState("down");
 
-  // Track which sections have animated
   const [animatedSections, setAnimatedSections] = useState({});
+
+  // Cloudinary optimization helper function
+  const optimize = (url) =>
+    url.includes("/upload/")
+      ? url.replace("/upload/", "/upload/f_auto,q_auto/")
+      : url;
 
   // Scroll direction detection
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
-
     const updateScrollDir = () => {
       const scrollY = window.pageYOffset;
       if (scrollY > lastScrollY) setScrollDir("down");
       else if (scrollY < lastScrollY) setScrollDir("up");
       lastScrollY = scrollY > 0 ? scrollY : 0;
     };
-
     window.addEventListener("scroll", updateScrollDir);
     return () => window.removeEventListener("scroll", updateScrollDir);
   }, []);
 
-  // Helper to animate only once per section
   const handleInView = (sectionName) => {
     if (!animatedSections[sectionName] && scrollDir === "down") {
       setAnimatedSections((prev) => ({ ...prev, [sectionName]: true }));
@@ -46,7 +48,12 @@ const Home = () => {
     <Wrapper>
       {/* Background Video */}
       <video autoPlay muted loop playsInline className="bg-video">
-        <source src="https://res.cloudinary.com/dancodp27/video/upload/v1764582233/hero_section_gsa_main_nyqexh.mp4" type="video/mp4" />
+        <source
+          src={optimize(
+            "https://res.cloudinary.com/dancodp27/video/upload/v1764582233/hero_section_gsa_main_nyqexh.mp4"
+          )}
+          type="video/mp4"
+        />
       </video>
 
       {/* Hero Section */}
@@ -71,7 +78,8 @@ const Home = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          We make all types of handicraft items in marble and specialize in animal statues.
+          We make all types of handicraft items in marble and specialize in
+          animal statues.
         </motion.p>
 
         <motion.div
@@ -80,14 +88,23 @@ const Home = () => {
           animate="visible"
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
+            visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } }
           }}
         >
-          <motion.a whileHover={{ scale: 1.2 }} href="https://www.instagram.com/gautamstoneart" target="_blank">
-            <img src={instaImg} alt="Instagram" />
+          <motion.a
+            whileHover={{ scale: 1.2 }}
+            href="https://www.instagram.com/gautamstoneart"
+            target="_blank"
+          >
+            <img loading="lazy" src={instaImg} alt="Instagram" />
           </motion.a>
-          <motion.a whileHover={{ scale: 1.2 }} href="https://www.facebook.com/gautamstoneart" target="_blank">
-            <img src={fbImg} alt="Facebook" />
+
+          <motion.a
+            whileHover={{ scale: 1.2 }}
+            href="https://www.facebook.com/gautamstoneart"
+            target="_blank"
+          >
+            <img loading="lazy" src={fbImg} alt="Facebook" />
           </motion.a>
         </motion.div>
       </motion.div>
@@ -129,13 +146,16 @@ const Home = () => {
             stands as a masterpiece of quality and craftsmanship."
           </p>
         </div>
+
         <motion.div
           className="slogan-video"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         >
           <video
-            src="https://res.cloudinary.com/dancodp27/video/upload/v1764582043/web-short-video-2_o3gmcc.mp4"
+            src={optimize(
+              "https://res.cloudinary.com/dancodp27/video/upload/v1764582043/web-short-video-2_o3gmcc.mp4"
+            )}
             autoPlay
             loop
             muted
@@ -156,6 +176,7 @@ const Home = () => {
         <div className="connect-us-heading">
           <h1>Come & Discuss</h1>
           <p>Come & Discuss, where artisans craft dreams into reality...</p>
+
           <motion.div
             className="contact-btn"
             whileHover={{ scale: 1.1 }}
@@ -172,25 +193,33 @@ const Home = () => {
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
           >
-            <span className="number"><CountUp start={0} end={100} duration={5} />+</span>
+            <span className="number">
+              <CountUp start={0} end={100} duration={5} />+
+            </span>
             <p>GLORIOUS YEARS</p>
           </motion.div>
+
           <motion.div
             whileInView={() => handleInView("artefacts")}
             animate={animatedSections["artefacts"] ? { scale: [0.8, 1] } : {}}
             transition={{ duration: 0.3, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <span className="number"><CountUp start={0} end={1100} duration={5} />+</span>
+            <span className="number">
+              <CountUp start={0} end={1100} duration={5} />+
+            </span>
             <p>INDIAN ARTEFACTS</p>
           </motion.div>
+
           <motion.div
             whileInView={() => handleInView("artisans")}
             animate={animatedSections["artisans"] ? { scale: [0.8, 1] } : {}}
             transition={{ duration: 0.3, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <span className="number"><CountUp start={0} end={10} duration={5} />+</span>
+            <span className="number">
+              <CountUp start={0} end={10} duration={5} />+
+            </span>
             <p>PASSIONATE ARTISANS</p>
           </motion.div>
         </div>
@@ -199,7 +228,9 @@ const Home = () => {
       {/* Why Choose Us */}
       <section className="why-choose-us">
         <h1>Why Choose Us</h1>
-        <motion.div className="why-choose-us-grid"
+
+        <motion.div
+          className="why-choose-us-grid"
           initial={{ opacity: 0, y: 50 }}
           whileInView={() => handleInView("why")}
           animate={animatedSections["why"] ? { opacity: 1, y: 0 } : {}}
@@ -211,14 +242,18 @@ const Home = () => {
             { icon: <GiStakeHammer size={50} />, text: "Customizable" },
             { icon: <TfiHeadphoneAlt size={50} />, text: "Quick Support" },
             { icon: <FaTruck size={50} />, text: "Fast Delivery" },
-            { icon: <FaBoxesStacked size={50} />, text: "Quality Collection" },
+            { icon: <FaBoxesStacked size={50} />, text: "Quality Collection" }
           ].map((item, i) => (
             <motion.div
               key={i}
               className="why-card"
               initial={{ opacity: 0, y: 40 }}
               whileInView={() => handleInView(`why-card-${i}`)}
-              animate={animatedSections[`why-card-${i}`] ? { opacity: 1, y: 0 } : {}}
+              animate={
+                animatedSections[`why-card-${i}`]
+                  ? { opacity: 1, y: 0 }
+                  : {}
+              }
               transition={{ delay: i * 0.2 }}
               whileHover={{ scale: 1.1, rotate: 2 }}
               viewport={{ once: true }}
@@ -231,7 +266,10 @@ const Home = () => {
       </section>
 
       {/* Modal */}
-      <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <QuoteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </Wrapper>
   );
 };

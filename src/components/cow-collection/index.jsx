@@ -4,22 +4,31 @@ import Wrapper from "./style";
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedCard, setSelectedCard] = useState(null); // New state for selected card
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const optimize = (url) => {
+    // inject f_auto,q_auto if not included
+    if (url.includes("upload/")) {
+      return url.replace("upload/", "upload/f_auto,q_auto/");
+    }
+    return url;
+  };
 
   const cards = [
     {
       id: 1,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581313/1_ybxogm.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581313/1_ybxogm.png')
+      ],
       title: "Marble Cow and Calf Statue",
-      desc: [
-        "Polished marble finish",
-        "Cow and calf motif",
-        "Custom size available"
-      ]
+      desc: ["Polished marble finish", "Cow and calf motif", "Custom size available"]
     },
     {
       id: 2,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581299/2_apdxpf.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581300/3_qzfgjl.png', ],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581299/2_apdxpf.png'),
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581300/3_qzfgjl.png')
+      ],
       title: "Marble Cow Head Sculpture",
       desc: [
         "Hand-carved white marble",
@@ -29,7 +38,10 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581314/4_l2hqok.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581314/5_exq7ib.png',],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581314/4_l2hqok.png'),
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581314/5_exq7ib.png')
+      ],
       title: "Marble Cow Head Wall Fountain",
       desc: [
         "Handcrafted white marble cow head panel",
@@ -39,46 +51,40 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: [ 'https://res.cloudinary.com/dancodp27/image/upload/v1764581308/6_jmiqwi.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581313/7_p3phwz.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581308/6_jmiqwi.png'),
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581313/7_p3phwz.png')
+      ],
       title: "Cow & Calf",
-      desc: [
-        "Polished marble",
-        "Hand-painted accent"
-      ]
+      desc: ["Polished marble", "Hand-painted accent"]
     },
     {
       id: 5,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581316/8_z99ubf.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581316/8_z99ubf.png')
+      ],
       title: "Harmony Bond",
-      desc: [
-        "Premium marble carve",
-        "Mother-calf intimacy",
-        "Smooth classic finish"
-      ]
+      desc: ["Premium marble carve", "Mother-calf intimacy", "Smooth classic finish"]
     },
     {
       id: 6,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581322/9_gco6xc.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581322/9_gco6xc.png')
+      ],
       title: "Cow with Calf",
-      desc: [
-        "Classic marble craft",
-        "Mother-calf in unity",
-        "Timeless natural shine"
-      ]
+      desc: ["Classic marble craft", "Mother-calf in unity", "Timeless natural shine"]
     },
     {
       id: 7,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581320/10_r3qbdt.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581320/10_r3qbdt.png')
+      ],
       title: "Cow & Calf Idol",
-      desc: [
-        "White marble work",
-        "Mother-child scene",
-        "Polished for shine"
-      ]
+      desc: ["White marble work", "Mother-child scene", "Polished for shine"]
     },
   ];
 
-  const openModal = (card) => { // Now passing the whole card object
+  const openModal = (card) => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
@@ -116,10 +122,14 @@ const HorseCollection = () => {
           <div
             className="card"
             key={card.id}
-            onClick={() => openModal(card)} // Pass the whole card here
+            onClick={() => openModal(card)}
           >
             <div className="card-image-container">
-              <img src={card.images[0]} alt={card.title} />
+              <img
+                src={card.images[0]}
+                alt={card.title}
+                loading="lazy"
+              />
               {card.images.length > 1 && (
                 <span className="image-count">+{card.images.length - 1}</span>
               )}
@@ -139,14 +149,15 @@ const HorseCollection = () => {
       {selectedImages.length > 0 && selectedCard && (
         <div className="modal" onClick={closeModal}>
           <span className="close" onClick={closeModal}>&times;</span>
-          
+
           <img
             className="modal-content"
             src={selectedImages[currentIndex]}
             alt="Large Preview"
+            loading="lazy"
             onClick={(e) => e.stopPropagation()}
           />
-          
+
           {selectedImages.length > 1 && (
             <>
               <button className="prev" onClick={prevImage}>❮</button>
@@ -165,7 +176,7 @@ const HorseCollection = () => {
               </div>
             </>
           )}
-          
+
           <div className="modal-info">
             <h3>{selectedCard.title}</h3>
             <ul className="modal-points">

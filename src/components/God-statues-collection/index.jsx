@@ -4,12 +4,17 @@ import Wrapper from "./style";
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedCard, setSelectedCard] = useState(null); // New state for selected card
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  // Cloudinary Optimization Function
+  const optimize = (url) => {
+    return url.replace("/upload/", "/upload/f_auto,q_auto/");
+  };
 
   const cards = [
     {
       id: 1,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581636/1_b5o8pj.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581636/1_b5o8pj.png")],
       title: "Ganesh Ji Idol",
       desc: [
         "Black marble finish",
@@ -19,7 +24,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581635/2_qcd0h6.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581635/2_qcd0h6.png")],
       title: "Ram Darbar",
       desc: [
         "White marble finish",
@@ -29,7 +34,7 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581663/3_txlkuj.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581663/3_txlkuj.png")],
       title: "Seated Ram Darbar",
       desc: [
         "Polished white marble",
@@ -39,7 +44,7 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581647/4_lwcp1w.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581647/4_lwcp1w.png")],
       title: "Shiv Parivar",
       desc: [
         "Pure white marble",
@@ -49,7 +54,7 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581660/5_dn4ywp.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581660/5_dn4ywp.png")],
       title: "Shiv Parvati Ji",
       desc: [
         "White marble finish",
@@ -59,7 +64,7 @@ const HorseCollection = () => {
     },
     {
       id: 6,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581652/6_mujezx.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581652/6_mujezx.png")],
       title: "Radha Krishna Ji",
       desc: [
         "White marble finish",
@@ -69,7 +74,7 @@ const HorseCollection = () => {
     },
     {
       id: 7,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581662/7_wviq0v.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581662/7_wviq0v.png")],
       title: "Krishna Radha Ji",
       desc: [
         "Smooth white marble",
@@ -79,7 +84,7 @@ const HorseCollection = () => {
     },
     {
       id: 8,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581663/8_zkzikv.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581663/8_zkzikv.png")],
       title: "Ganesh Ji Idol",
       desc: [
         "White marble finish",
@@ -89,7 +94,7 @@ const HorseCollection = () => {
     },
     {
       id: 9,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581673/9_qbk2w1.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581673/9_qbk2w1.png")],
       title: "White Ganesh Ji",
       desc: [
         "Polished white marble",
@@ -99,7 +104,7 @@ const HorseCollection = () => {
     },
     {
       id: 10,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581682/10_mas6fs.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581682/10_mas6fs.png")],
       title: "Ganesh Ji Idol",
       desc: [
         "Glossy black marble",
@@ -109,7 +114,7 @@ const HorseCollection = () => {
     },
     {
       id: 11,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581689/11_qkknjd.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581689/11_qkknjd.png")],
       title: "Classic Ganesh Ji",
       desc: [
         "Pure white marble",
@@ -119,7 +124,7 @@ const HorseCollection = () => {
     },
     {
       id: 12,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581691/12_hm3h2p.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581691/12_hm3h2p.png")],
       title: "Maa Durga",
       desc: [
         "Premium marble finish",
@@ -129,7 +134,7 @@ const HorseCollection = () => {
     },
     {
       id: 13,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581687/13_mwwktd.png'],
+      images: [optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581687/13_mwwktd.png")],
       title: "Black Lakshmi Ji",
       desc: [
         "Premium black marble",
@@ -139,7 +144,7 @@ const HorseCollection = () => {
     },
   ];
 
-  const openModal = (card) => { // Now passing the whole card object
+  const openModal = (card) => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
@@ -174,24 +179,22 @@ const HorseCollection = () => {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <div
-            className="card"
-            key={card.id}
-            onClick={() => openModal(card)} // Pass the whole card here
-          >
+          <div className="card" key={card.id} onClick={() => openModal(card)}>
             <div className="card-image-container">
-              <img src={card.images[0]} alt={card.title} />
-              {card.images.length > 1 && (
-                <span className="image-count">+{card.images.length - 1}</span>
-              )}
-              <div className="overlay">
-                <h3>{card.title}</h3>
-                <ul className="card-points">
-                  {card.desc.map((point, idx) => (
-                    <li key={idx}>{point}</li>
-                  ))}
-                </ul>
-              </div>
+              <img 
+                src={card.images[0]} 
+                alt={card.title} 
+                loading="lazy"
+              />
+            </div>
+
+            <div className="overlay">
+              <h3>{card.title}</h3>
+              <ul className="card-points">
+                {card.desc.map((point, idx) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}
@@ -200,23 +203,25 @@ const HorseCollection = () => {
       {selectedImages.length > 0 && selectedCard && (
         <div className="modal" onClick={closeModal}>
           <span className="close" onClick={closeModal}>&times;</span>
-          
+
           <img
             className="modal-content"
             src={selectedImages[currentIndex]}
             alt="Large Preview"
+            loading="lazy"
             onClick={(e) => e.stopPropagation()}
           />
-          
+
           {selectedImages.length > 1 && (
             <>
               <button className="prev" onClick={prevImage}>❮</button>
               <button className="next" onClick={nextImage}>❯</button>
+
               <div className="dot-container">
                 {selectedImages.map((_, index) => (
                   <span
                     key={index}
-                    className={`dot ${currentIndex === index ? 'active' : ''}`}
+                    className={`dot ${currentIndex === index ? "active" : ""}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       setCurrentIndex(index);
@@ -226,7 +231,7 @@ const HorseCollection = () => {
               </div>
             </>
           )}
-          
+
           <div className="modal-info">
             <h3>{selectedCard.title}</h3>
             <ul className="modal-points">

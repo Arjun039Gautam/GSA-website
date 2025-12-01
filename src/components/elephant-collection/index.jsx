@@ -4,12 +4,20 @@ import Wrapper from "./style";
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedCard, setSelectedCard] = useState(null); // New state for selected card
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const optimize = (url) => {
+    return url.replace("/upload/", "/upload/f_auto,q_auto/");
+  };
 
   const cards = [
     {
       id: 1,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581497/3_yf2dvc.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581478/2_vfbdpu.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581487/1_qjcjy0.png' ],
+      images: [
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581497/3_yf2dvc.png"),
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581478/2_vfbdpu.png"),
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581487/1_qjcjy0.png")
+      ],
       title: "Marble Elephant Pair",
       desc: [
         "Handcrafted marble",
@@ -19,7 +27,11 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581502/4_ehsue4.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581486/5_mk6ysf.png','https://res.cloudinary.com/dancodp27/image/upload/v1764581502/6_epbv7l.png'],
+      images: [
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581502/4_ehsue4.png"),
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581486/5_mk6ysf.png"),
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581502/6_epbv7l.png")
+      ],
       title: "Decor Elephant",
       desc: [
         "Colorful marble art",
@@ -29,7 +41,11 @@ const HorseCollection = () => {
     },
     {
       id: 3,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581511/8_mij93r.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581507/7_idiiif.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581511/9_nrvdrd.png'],
+      images: [
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581511/8_mij93r.png"),
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581507/7_idiiif.png"),
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581511/9_nrvdrd.png")
+      ],
       title: "Black Elephant Pair",
       desc: [
         "Matte black finish",
@@ -39,7 +55,9 @@ const HorseCollection = () => {
     },
     {
       id: 4,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581505/10_kfr4dl.png'],
+      images: [
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581505/10_kfr4dl.png")
+      ],
       title: "Black Elephant Idol",
       desc: [
         "Matte stone texture",
@@ -49,7 +67,9 @@ const HorseCollection = () => {
     },
     {
       id: 5,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581514/11_gc3rko.png'],
+      images: [
+        optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581514/11_gc3rko.png")
+      ],
       title: "Royal Elephant Pair",
       desc: [
         "Hand-painted marble",
@@ -59,15 +79,15 @@ const HorseCollection = () => {
     },
   ];
 
-  const openModal = (card) => { // Now passing the whole card object
+  const openModal = (card) => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
   };
 
   const closeModal = () => {
-    setSelectedImages([]);
     setSelectedCard(null);
+    setSelectedImages([]);
     setCurrentIndex(0);
   };
 
@@ -94,16 +114,17 @@ const HorseCollection = () => {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <div
-            className="card"
-            key={card.id}
-            onClick={() => openModal(card)} // Pass the whole card here
-          >
+          <div key={card.id} className="card" onClick={() => openModal(card)}>
             <div className="card-image-container">
-              <img src={card.images[0]} alt={card.title} />
+              <img 
+                src={card.images[0]} 
+                alt={card.title} 
+                loading="lazy" 
+              />
               {card.images.length > 1 && (
                 <span className="image-count">+{card.images.length - 1}</span>
               )}
+
               <div className="overlay">
                 <h3>{card.title}</h3>
                 <ul className="card-points">
@@ -120,18 +141,20 @@ const HorseCollection = () => {
       {selectedImages.length > 0 && selectedCard && (
         <div className="modal" onClick={closeModal}>
           <span className="close" onClick={closeModal}>&times;</span>
-          
+
           <img
             className="modal-content"
             src={selectedImages[currentIndex]}
-            alt="Large Preview"
+            alt="Preview"
+            loading="lazy"
             onClick={(e) => e.stopPropagation()}
           />
-          
+
           {selectedImages.length > 1 && (
             <>
               <button className="prev" onClick={prevImage}>❮</button>
               <button className="next" onClick={nextImage}>❯</button>
+
               <div className="dot-container">
                 {selectedImages.map((_, index) => (
                   <span
@@ -146,7 +169,7 @@ const HorseCollection = () => {
               </div>
             </>
           )}
-          
+
           <div className="modal-info">
             <h3>{selectedCard.title}</h3>
             <ul className="modal-points">

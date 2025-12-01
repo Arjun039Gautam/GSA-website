@@ -4,113 +4,81 @@ import Wrapper from "./style";
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedCard, setSelectedCard] = useState(null); // New state for selected card
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const optimize = (url) =>
+    url.replace("/upload/", "/upload/f_auto,q_auto/");
 
   const cards = [
     {
       id: 1,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581171/1_jyi1ax.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581171/1_jyi1ax.png')],
       title: "Sculpted Minimal Tower",
-      desc: [
-        "Modern marble abstract",
-        "Smooth geometric lines",
-        "Perfect for statement decor"
-      ]
+      desc: ["Modern marble abstract", "Smooth geometric lines", "Perfect for statement decor"]
     },
     {
       id: 2,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581171/2_jcj07e.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581171/2_jcj07e.png')],
       title: "Flowing Motion Sculpture",
-      desc: [
-        "Abstract marble form",
-        "Dynamic flowing curves",
-        "Modern artistic centerpiece"
-      ]
+      desc: ["Abstract marble form", "Dynamic flowing curves", "Modern artistic centerpiece"]
     },
     {
       id: 3,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581173/3_ii8pwr.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581173/3_ii8pwr.png')],
       title: "Embrace Figurine",
-      desc: [
-        "Abstract couple design",
-        "Minimalist marble form",
-        "Modern love theme"
-      ]
+      desc: ["Abstract couple design", "Minimalist marble form", "Modern love theme"]
     },
     {
       id: 4,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581193/4_v1sqmd.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581193/4_v1sqmd.png')],
       title: "Marble Flame Abstract",
-      desc: [
-        "Fluid modern art piece",
-        "Soft textured surface",
-        "Inspired by rising flame"
-
-      ]
+      desc: ["Fluid modern art piece", "Soft textured surface", "Inspired by rising flame"]
     },
     {
       id: 5,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581192/5_ixlv7u.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581192/5_ixlv7u.png')],
       title: "Spiral Modern Accent",
-      desc: [
-        "Abstract spiral design",
-        "Smooth marble sculpture",
-        "Contemporary statement piece"
-      ]
+      desc: ["Abstract spiral design", "Smooth marble sculpture", "Contemporary statement piece"]
     },
     {
       id: 6,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581189/6_an500f.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581178/7_zzsh3f.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581189/6_an500f.png'),
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581178/7_zzsh3f.png')
+      ],
       title: "Curved Modern Form",
-      desc: [
-        "Textured grey finish",
-        "Open abstract design",
-        "Contemporary table piece"
-      ]
+      desc: ["Textured grey finish", "Open abstract design", "Contemporary table piece"]
     },
     {
       id: 7,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581189/8_ipltzu.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581189/8_ipltzu.png')],
       title: "Infinity Twist Sculpture",
-      desc: [
-        "Smooth marble curves",
-        "Contemporary infinity shape",
-        "Elegant modern decor"
-      ]
+      desc: ["Smooth marble curves", "Contemporary infinity shape", "Elegant modern decor"]
     },
     {
       id: 8,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581189/9_y86wkx.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581189/9_y86wkx.png')],
       title: "Minimal Ganesha Idol",
-      desc: [
-        "Contemporary Ganesha form",
-        "Smooth marble finish",
-        "Calm spiritual accent"
-      ]
+      desc: ["Contemporary Ganesha form", "Smooth marble finish", "Calm spiritual accent"]
     },
     {
       id: 9,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581206/10_n42nq8.png'],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581206/10_n42nq8.png')],
       title: "Modern Ganesha Silhouette",
-      desc: [
-        "Stylized elephant head",
-        "Marble abstract finish",
-        "Spiritual and minimal"
-      ]
+      desc: ["Stylized elephant head", "Marble abstract finish", "Spiritual and minimal"]
     },
     {
       id: 10,
-      images: ['https://res.cloudinary.com/dancodp27/image/upload/v1764581205/11_gnakub.png', 'https://res.cloudinary.com/dancodp27/image/upload/v1764581208/12_dfibaw.png'],
+      images: [
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581205/11_gnakub.png'),
+        optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581208/12_dfibaw.png'),
+      ],
       title: "Contemporary Ganesh Idol",
-      desc: [
-        "Modern marble Ganesha",
-        "Smooth minimal lines",
-        "Sculptural divine touch"
-      ]
+      desc: ["Modern marble Ganesha", "Smooth minimal lines", "Sculptural divine touch"]
     },
   ];
 
-  const openModal = (card) => { // Now passing the whole card object
+  const openModal = (card) => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
@@ -124,16 +92,12 @@ const HorseCollection = () => {
 
   const prevImage = (e) => {
     e.stopPropagation();
-    setCurrentIndex((prev) =>
-      prev === 0 ? selectedImages.length - 1 : prev - 1
-    );
+    setCurrentIndex((prev) => (prev === 0 ? selectedImages.length - 1 : prev - 1));
   };
 
   const nextImage = (e) => {
     e.stopPropagation();
-    setCurrentIndex((prev) =>
-      prev === selectedImages.length - 1 ? 0 : prev + 1
-    );
+    setCurrentIndex((prev) => (prev === selectedImages.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -145,16 +109,14 @@ const HorseCollection = () => {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <div
-            className="card"
-            key={card.id}
-            onClick={() => openModal(card)} // Pass the whole card here
-          >
+          <div className="card" key={card.id} onClick={() => openModal(card)}>
             <div className="card-image-container">
-              <img src={card.images[0]} alt={card.title} />
+              <img loading="lazy" src={card.images[0]} alt={card.title} />
+
               {card.images.length > 1 && (
                 <span className="image-count">+{card.images.length - 1}</span>
               )}
+
               <div className="overlay">
                 <h3>{card.title}</h3>
                 <ul className="card-points">
@@ -170,24 +132,26 @@ const HorseCollection = () => {
 
       {selectedImages.length > 0 && selectedCard && (
         <div className="modal" onClick={closeModal}>
-          <span className="close" onClick={closeModal}>&times;</span>
-          
+          <span className="close">&times;</span>
+
           <img
+            loading="lazy"
             className="modal-content"
             src={selectedImages[currentIndex]}
             alt="Large Preview"
             onClick={(e) => e.stopPropagation()}
           />
-          
+
           {selectedImages.length > 1 && (
             <>
               <button className="prev" onClick={prevImage}>❮</button>
               <button className="next" onClick={nextImage}>❯</button>
+
               <div className="dot-container">
                 {selectedImages.map((_, index) => (
                   <span
                     key={index}
-                    className={`dot ${currentIndex === index ? 'active' : ''}`}
+                    className={`dot ${currentIndex === index ? "active" : ""}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       setCurrentIndex(index);
@@ -197,7 +161,7 @@ const HorseCollection = () => {
               </div>
             </>
           )}
-          
+
           <div className="modal-info">
             <h3>{selectedCard.title}</h3>
             <ul className="modal-points">
