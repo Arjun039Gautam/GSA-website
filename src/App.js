@@ -21,6 +21,8 @@ import MordernArtCollection from './components/mordern-art-collection'
 import MasterPeicesCollection from './components/master-peices-collection'
 import ScrollToTop from "./components/scrolltotop";
 import WhatsAppButton from "./components/whatsapp";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -46,6 +48,14 @@ function App() {
         <Route path="/creative-collection" element={<CreativeCollection />} />
       </Routes>
       <WhatsAppButton />
+      <ToastContainer 
+        position="bottom-right"
+        autoClose={5000}
+        pauseOnHover
+        draggable
+        toastClassName="custom-toast"
+        bodyClassName="custom-toast-body"
+      />
       <Footer />
     </Router>
   );

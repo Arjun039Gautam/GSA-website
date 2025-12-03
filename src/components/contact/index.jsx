@@ -1,48 +1,53 @@
 import React from "react";
 import Wrapper from "./style";
 import { motion } from "framer-motion";
-import { FaInstagramSquare, FaFacebookSquare } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import { HiMail } from "react-icons/hi";
 import { IoLocation } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwoVQ7dFHkIvLNCCC-XBGhMjiDwg7odA32xEmv3fEemrvv3NmTAlC_axcIJz9Ehc2pZBg/exec";
 
 const Contact = () => {
 
+  const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
+  e.preventDefault();
+  const form = e.target;
 
-    // Build urlencoded payload (avoids preflight)
-    const payload = new URLSearchParams();
-    payload.append("source", "ContactForm");
-    payload.append("firstName", form.firstName.value);
-    payload.append("lastName", form.lastName.value);
-    payload.append("email", form.email.value);
-    payload.append("phone", form.phone.value);
-    payload.append("subject", form.subject.value || "");
-    payload.append("message", form.message.value);
+  setLoading(true); // start loader
 
-    try {
-      const res = await fetch(WEB_APP_URL, {
-        method: "POST",
-        body: payload
-      });
-      const json = await res.json();
-      if (json.status === "success") {
-        alert("Message sent! Thank you.");
-        form.reset();
-      } else {
-        alert("Server error: " + (json.message || "Please try again."));
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Failed to send. Open console to see error.");
+  const payload = new URLSearchParams();
+  payload.append("source", "ContactForm");
+  payload.append("firstName", form.firstName.value);
+  payload.append("lastName", form.lastName.value);
+  payload.append("email", form.email.value);
+  payload.append("phone", form.phone.value);
+  payload.append("subject", form.subject.value || "");
+  payload.append("message", form.message.value);
+
+  try {
+    const res = await fetch(WEB_APP_URL, {
+      method: "POST",
+      body: payload,
+    });
+
+    const json = await res.json();
+
+    if (json.status === "success") {
+      toast.success("Message sent successfully!");
+      form.reset();
+    } else {
+      toast.error("Server error! Please try again.");
     }
-  };
-
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to send message!");
+  } finally {
+    setLoading(false); // stop loader
+  }
+};
 
   return (
     <Wrapper>
@@ -98,7 +103,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="instagram"
               >
-                <FaInstagramSquare size={40}/>
+                <img src="https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750123/instagram_1_mg3hjm.png" alt="" />
               </a>
               <a 
                 href="https://facebook.com/gautamstoneart" 
@@ -106,7 +111,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="facebook"
               >
-                <FaFacebookSquare size={40}/>
+                <img src="https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750100/facebook_inv66f.png" alt="" />
               </a>
             </motion.div>
 
@@ -175,9 +180,20 @@ const Contact = () => {
                 <textarea name="message" placeholder="Write your message..." required></textarea>
               </div>
 
-              <motion.button type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                Send Message
+              <motion.button 
+                type="submit" 
+                disabled={loading}
+                className={loading ? "btn-loading" : ""}
+                whileHover={{ scale: loading ? 1 : 1.05 }}
+                whileTap={{ scale: loading ? 1 : 0.95 }}
+              >
+                {loading ? (
+                  <div className="spinner"></div>
+                ) : (
+                  "Send Message"
+                )}
               </motion.button>
+
             </form>
           </motion.div>
         </div>

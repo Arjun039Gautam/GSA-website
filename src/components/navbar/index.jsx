@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Wrapper from "./style";
-import logo from "../images/for now final logo.png";
 import { NavLink, useLocation } from "react-router-dom"; // 👈 Import useLocation
 import QuoteModal from "../get-quote/QuoteModal.jsx";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -77,7 +76,7 @@ const Navbar = () => {
       ></div>
 
       <div className="logo">
-        <img src={logo} alt="GSA Logo" />
+        <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750124/for_now_final_logo_an7xps.png' alt="GSA Logo" />
         <h2>Gautam Stone Art</h2>
       </div>
 

@@ -1,8 +1,10 @@
 // QuoteModal.jsx
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwoVQ7dFHkIvLNCCC-XBGhMjiDwg7odA32xEmv3fEemrvv3NmTAlC_axcIJz9Ehc2pZBg/exec";
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbwoVQ7dFHkIvLNCCC-XBGhMjiDwg7odA32xEmv3fEemrvv3NmTAlC_axcIJz9Ehc2pZBg/exec";
 
 const Backdrop = styled.div`
   position: fixed;
@@ -74,10 +76,35 @@ const ModalBox = styled.div`
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
   }
 
   button:hover {
     background: linear-gradient(135deg, #ff6b6b, #f5a623);
+  }
+
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* Spinner */
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 3px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .close-btn {
@@ -96,11 +123,15 @@ const ModalBox = styled.div`
 `;
 
 const QuoteModal = ({ isOpen, onClose }) => {
+  const [loading, setLoading] = useState(false);
+
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+
+    setLoading(true);
 
     const payload = new URLSearchParams();
     payload.append("source", "Quote");
@@ -111,32 +142,45 @@ const QuoteModal = ({ isOpen, onClose }) => {
     payload.append("message", form.message.value);
 
     try {
-      const res = await fetch(WEB_APP_URL, { method: "POST", body: payload });
+      const res = await fetch(WEB_APP_URL, {
+        method: "POST",
+        body: payload,
+      });
+
       const json = await res.json();
+
       if (json.status === "success") {
-        alert("Quote Submitted Successfully!");
+        toast.success("Quote request submitted!");
         form.reset();
         onClose();
       } else {
-        alert("Server error: " + (json.message || "Please try again."));
+        toast.error("Server error! Please try again.");
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to submit. Please try again.");
+      toast.error("Failed to submit form!");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Backdrop>
       <ModalBox>
-        <span className="close-btn" onClick={onClose}>&times;</span>
+        <span className="close-btn" onClick={onClose}>
+          &times;
+        </span>
         <h2>Gautam Stone Art</h2>
+
         <form onSubmit={handleSubmit}>
           <input name="name" type="text" placeholder="Name" required />
           <input name="email" type="email" placeholder="Email Address" required />
           <input name="phone" type="text" placeholder="Contact No." />
           <textarea name="message" placeholder="Message" required></textarea>
-          <button type="submit">Submit</button>
+
+          <button type="submit" disabled={loading}>
+            {loading ? <div className="spinner"></div> : "Submit"}
+          </button>
         </form>
       </ModalBox>
     </Backdrop>

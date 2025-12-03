@@ -178,6 +178,19 @@ const Wrapper = styled.section`
     border: none;
     border-radius: 10px;
   }
+  
+  .instagram{
+    img{
+      max-width: 40px;
+      height: auto;
+    }
+  }
+  .facebook{
+    img{
+      max-width: 38px;
+      height: auto;
+    }
+  }
 
   /* Tablet-specific Styles (769px to 1024px) */
   @media (min-width: 769px) and (max-width: 1024px) {
@@ -245,6 +258,35 @@ const Wrapper = styled.section`
       font-size: 14px;
     }
   }
+
+  button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button.btn-loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 `;
 
 export default Wrapper;

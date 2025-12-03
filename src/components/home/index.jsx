@@ -9,8 +9,6 @@ import { GiStakeHammer } from "react-icons/gi";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { FaTruck } from "react-icons/fa6";
 import { FaBoxesStacked } from "react-icons/fa6";
-import instaImg from "../images/instagram (1).png";
-import fbImg from "../images/facebook.png";
 import QuoteModal from "../get-quote/QuoteModal";
 
 const Home = () => {
@@ -96,7 +94,7 @@ const Home = () => {
             href="https://www.instagram.com/gautamstoneart"
             target="_blank"
           >
-            <img loading="lazy" src={instaImg} alt="Instagram" />
+            <img loading="lazy" src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750123/instagram_1_mg3hjm.png' alt="Instagram" />
           </motion.a>
 
           <motion.a
@@ -104,7 +102,7 @@ const Home = () => {
             href="https://www.facebook.com/gautamstoneart"
             target="_blank"
           >
-            <img loading="lazy" src={fbImg} alt="Facebook" />
+            <img loading="lazy" src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750100/facebook_inv66f.png' alt="Facebook" />
           </motion.a>
         </motion.div>
       </motion.div>

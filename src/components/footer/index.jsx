@@ -1,11 +1,8 @@
 import React from "react";
 import Wrapper from "./style";
-import logo from "../images/for now final logo.png"; 
 import { IoMdCall } from "react-icons/io";
 import { HiMail } from "react-icons/hi";
 import { IoLocation } from "react-icons/io5";
-import instaImg from "../images/instagram (1).png";
-import fbImg from "../images/facebook.png";
 import { Link } from "react-router-dom";
 
 
@@ -15,7 +12,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* Left section - Logo + About */}
         <div className="footer-section about animate">
-          <img src={logo} alt="Logo" className="footer-logo" />
+          <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750124/for_now_final_logo_an7xps.png' alt="Logo" className="footer-logo" />
           <h2>Gautam Stone Art</h2>
           <p>
             125 years of artistry, carrying forward a timeless vision with modern elegance.
@@ -42,11 +39,11 @@ const Footer = () => {
             <li><Link to="/cow-collection">Cow Statues</Link></li>
             <li><Link to="/elephant-collection">Elephant Statues</Link></li>
             <li><Link to="/dog-collection">Dog Statues</Link></li>
-            <li><Link to="/tortoise-collection">Tortoise Statues</Link></li>
+            {/* <li><Link to="/tortoise-collection">Tortoise Statues</Link></li> */}
             <li><Link to="/modern-art-collection">Modern Art</Link></li>
             <li><Link to="/panel-collection">Wall Panels</Link></li>
-            <li><Link to="/master-collection">Master Piece</Link></li>
-            <li><Link to="/creative-collection">Creative Designs</Link></li>
+            {/* <li><Link to="/master-collection">Master Piece</Link></li> */}
+            {/* <li><Link to="/creative-collection">Creative Designs</Link></li> */}
           </ul>
         </div>
 
@@ -67,10 +64,10 @@ const Footer = () => {
           </div>
           <div className="social-icons">
             <a href="https://www.facebook.com/gautamstoneart" target="_blank" rel="noopener noreferrer">
-              <img src={fbImg} alt="Facebook" />
+              <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750100/facebook_inv66f.png' alt="Facebook" />
             </a>
             <a href="https://www.instagram.com/gautamstoneart" target="_blank" rel="noopener noreferrer">
-              <img src={instaImg} alt="Instagram" />
+              <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750123/instagram_1_mg3hjm.png' alt="Instagram" />
             </a>
           </div>
         </div>

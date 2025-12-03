@@ -1,8 +1,5 @@
 import React from "react";
 import Wrapper from "./style";
-import factoryImg from "../images/factoryImg.jpeg"
-import showroomImg from "../images/showroom1.jpg";
-import workersImg from "../images/showroom2.jpg"; 
 import { FaAward, FaPaintBrush, FaGlobe } from "react-icons/fa";
 
 const About = () => {
@@ -17,9 +14,9 @@ const About = () => {
         {/* Left Image */}
         <div className="aboutImg">
           <div className="img-grid">
-            <img src={factoryImg} alt="Factory" className="img img1" />
-            <img src={showroomImg} alt="Showroom" className="img img2" />
-            <img src={workersImg} alt="Workers" className="img img3" />
+            <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750114/factoryImg_bmfqfe.jpg' alt="Factory" className="img img1" />
+            <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750146/showroom1_q22sy8.jpg' alt="Showroom" className="img img2" />
+            <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750152/showroom2_wrh4pj.jpg' alt="Workers" className="img img3" />
           </div>
         </div>
 
