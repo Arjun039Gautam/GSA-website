@@ -10,6 +10,8 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { FaTruck } from "react-icons/fa6";
 import { FaBoxesStacked } from "react-icons/fa6";
 import QuoteModal from "../get-quote/QuoteModal";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +19,9 @@ const Home = () => {
 
   const [animatedSections, setAnimatedSections] = useState({});
 
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true, easing: "ease-out-cubic" });
+  }, []);
   // Cloudinary optimization helper function
   const optimize = (url) =>
     url.includes("/upload/")
@@ -48,7 +53,7 @@ const Home = () => {
       <video autoPlay muted loop playsInline className="bg-video">
         <source
           src={optimize(
-            "https://res.cloudinary.com/dancodp27/video/upload/v1764582233/hero_section_gsa_main_nyqexh.mp4"
+            "https://res.cloudinary.com/dancodp27/video/upload/v1764843236/VN20251204_154016_jcuocb.mp4"
           )}
           type="video/mp4"
         />
