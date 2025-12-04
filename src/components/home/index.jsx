@@ -12,8 +12,6 @@ import { FaBoxesStacked } from "react-icons/fa6";
 import QuoteModal from "../get-quote/QuoteModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Lottie from "lottie-react";
-import animationData from "../../assessts/VN final.json";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,15 +50,14 @@ const Home = () => {
   return (
     <Wrapper>
       {/* Background Video */}
-      <div className="bg-video-wrapper">
-        <Lottie 
-          animationData={animationData}
-          loop
-          autoplay
-          className="bg-video"
+      <video autoPlay muted loop playsInline className="bg-video">
+        <source
+          src={optimize(
+            "https://res.cloudinary.com/dancodp27/video/upload/v1764852114/VN-final_dzwnxv.mp4"
+          )}
+          type="video/mp4"
         />
-      </div>
-
+      </video>
 
       {/* Hero Section */}
       <motion.div
