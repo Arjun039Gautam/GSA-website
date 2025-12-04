@@ -4,15 +4,21 @@ const Wrapper = styled.section`
   width: 100%;
   overflow: hidden;
 
-  /* Background Video */
-  .bg-video {
+  /* BACKGROUND LOTTIE FIX */
+  .bg-video-wrapper {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    inset: 0;          
+    width: 100vw;
     height: 100vh;
-    object-fit: cover;
     z-index: -1;
+    overflow: hidden;      /* crop properly */
+  }
+
+  .bg-video {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.4); /* IMPORTANT: makes it cover like video */
+    pointer-events: none;
   }
 
   /* Hero Overlay */
