@@ -1,51 +1,71 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import CountUp from "react-countup";
+import React, { useState, useRef, useEffect } from "react";
 import Wrapper from "./style";
 import Gallery from "../gallery";
 import About from "../about";
-import { FaCheckCircle } from "react-icons/fa";
-import { GiStakeHammer } from "react-icons/gi";
-import { TfiHeadphoneAlt } from "react-icons/tfi";
-import { FaTruck } from "react-icons/fa6";
-import { FaBoxesStacked } from "react-icons/fa6";
 import QuoteModal from "../get-quote/QuoteModal";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
+// Lightweight Counter Component
+const Counter = ({ end }) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const increment = Math.ceil(end / 100);
+    const interval = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        start = end;
+        clearInterval(interval);
+      }
+      setCount(start);
+    }, 20);
+    return () => clearInterval(interval);
+  }, [end]);
+
+  return <span>{count}+</span>;
+};
+
+// Custom Hook for Intersection Observer Animations
+const useInViewAnimation = (ref, className = "animate") => {
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          element.classList.add(className);
+          observer.unobserve(element);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [ref, className]);
+};
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [scrollDir, setScrollDir] = useState("down");
 
-  const [animatedSections, setAnimatedSections] = useState({});
+  const aboutRef = useRef(null);
+  const galleryRef = useRef(null);
+  const sloganRef = useRef(null);
+  const connectRef = useRef(null);
+  const whyRef = useRef(null);
 
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true, easing: "ease-out-cubic" });
-  }, []);
-  // Cloudinary optimization helper function
+  useInViewAnimation(aboutRef);
+  useInViewAnimation(galleryRef);
+  useInViewAnimation(sloganRef);
+  useInViewAnimation(connectRef);
+  useInViewAnimation(whyRef);
+
+  // Cloudinary optimization
   const optimize = (url) =>
     url.includes("/upload/")
       ? url.replace("/upload/", "/upload/f_auto,q_auto/")
       : url;
-
-  // Scroll direction detection
-  useEffect(() => {
-    let lastScrollY = window.pageYOffset;
-    const updateScrollDir = () => {
-      const scrollY = window.pageYOffset;
-      if (scrollY > lastScrollY) setScrollDir("down");
-      else if (scrollY < lastScrollY) setScrollDir("up");
-      lastScrollY = scrollY > 0 ? scrollY : 0;
-    };
-    window.addEventListener("scroll", updateScrollDir);
-    return () => window.removeEventListener("scroll", updateScrollDir);
-  }, []);
-
-  const handleInView = (sectionName) => {
-    if (!animatedSections[sectionName] && scrollDir === "down") {
-      setAnimatedSections((prev) => ({ ...prev, [sectionName]: true }));
-    }
-  };
 
   return (
     <Wrapper>
@@ -60,101 +80,58 @@ const Home = () => {
       </video>
 
       {/* Hero Section */}
-      <motion.div
-        className="overlay"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
-      >
-        <motion.h1
-          className="title"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          GAUTAM STONE ART
-        </motion.h1>
-
-        <motion.p
-          className="desc"
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
+      <div className="overlay">
+        <h1 className="title">GAUTAM STONE ART</h1>
+        <p className="desc">
           We make all types of handicraft items in marble and specialize in
           animal statues.
-        </motion.p>
+        </p>
 
-        <motion.div
-          className="social-img"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } }
-          }}
-        >
-          <motion.a
-            whileHover={{ scale: 1.2 }}
+        <div className="social-img">
+          <a
             href="https://www.instagram.com/gautamstoneart"
             target="_blank"
+            rel="noreferrer"
           >
-            <img loading="lazy" src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750123/instagram_1_mg3hjm.png' alt="Instagram" />
-          </motion.a>
-
-          <motion.a
-            whileHover={{ scale: 1.2 }}
+            <img
+              loading="lazy"
+              src="https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750123/instagram_1_mg3hjm.png"
+              alt="Instagram"
+            />
+          </a>
+          <a
             href="https://www.facebook.com/gautamstoneart"
             target="_blank"
+            rel="noreferrer"
           >
-            <img loading="lazy" src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750100/facebook_inv66f.png' alt="Facebook" />
-          </motion.a>
-        </motion.div>
-      </motion.div>
+            <img
+              loading="lazy"
+              src="https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750100/facebook_inv66f.png"
+              alt="Facebook"
+            />
+          </a>
+        </div>
+      </div>
 
       {/* About Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={() => handleInView("about")}
-        animate={animatedSections["about"] ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
+      <div ref={aboutRef} className="section about-section">
         <About />
-      </motion.div>
+      </div>
 
       {/* Gallery Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={() => handleInView("gallery")}
-        animate={animatedSections["gallery"] ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
+      <div ref={galleryRef} className="section gallery-section">
         <Gallery />
-      </motion.div>
+      </div>
 
       {/* Slogan Section */}
-      <motion.div
-        className="slogan"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={() => handleInView("slogan")}
-        animate={animatedSections["slogan"] ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
+      <div ref={sloganRef} className="section slogan">
         <div className="slogan-content">
           <p>
             "We focus on creating less, but ensuring that every single piece
             stands as a masterpiece of quality and craftsmanship."
           </p>
         </div>
-
-        <motion.div
-          className="slogan-video"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div className="slogan-video">
           <video
             src={optimize(
               "https://res.cloudinary.com/dancodp27/video/upload/v1764582043/web-short-video-2_o3gmcc.mp4"
@@ -164,115 +141,57 @@ const Home = () => {
             muted
             playsInline
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Connect Us */}
-      <motion.div
-        className="connect-us"
-        initial={{ opacity: 0 }}
-        whileInView={() => handleInView("connect")}
-        animate={animatedSections["connect"] ? { opacity: 1 } : {}}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
+      <div ref={connectRef} className="section connect-us">
         <div className="connect-us-heading">
           <h1>Come & Discuss</h1>
-          <p>Come & Discuss, where artisans craft dreams into reality...</p>
-
-          <motion.div
+          <p>Where artisans craft dreams into reality...</p>
+          <div
             className="contact-btn"
-            whileHover={{ scale: 1.1 }}
             onClick={() => setIsModalOpen(true)}
           >
             Contact Us
-          </motion.div>
+          </div>
         </div>
-
         <div className="connect-us-content">
-          <motion.div
-            whileInView={() => handleInView("glorious")}
-            animate={animatedSections["glorious"] ? { scale: [0.8, 1] } : {}}
-            transition={{ duration: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <span className="number">
-              <CountUp start={0} end={100} duration={5} />+
-            </span>
+          <div>
+            <Counter end={100} />
             <p>GLORIOUS YEARS</p>
-          </motion.div>
-
-          <motion.div
-            whileInView={() => handleInView("artefacts")}
-            animate={animatedSections["artefacts"] ? { scale: [0.8, 1] } : {}}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <span className="number">
-              <CountUp start={0} end={1100} duration={5} />+
-            </span>
+          </div>
+          <div>
+            <Counter end={1100} />
             <p>INDIAN ARTEFACTS</p>
-          </motion.div>
-
-          <motion.div
-            whileInView={() => handleInView("artisans")}
-            animate={animatedSections["artisans"] ? { scale: [0.8, 1] } : {}}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <span className="number">
-              <CountUp start={0} end={10} duration={5} />+
-            </span>
+          </div>
+          <div>
+            <Counter end={10} />
             <p>PASSIONATE ARTISANS</p>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Why Choose Us */}
-      <section className="why-choose-us">
+      <div ref={whyRef} className="section why-choose-us">
         <h1>Why Choose Us</h1>
-
-        <motion.div
-          className="why-choose-us-grid"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={() => handleInView("why")}
-          animate={animatedSections["why"] ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
+        <div className="why-choose-us-grid">
           {[
-            { icon: <FaCheckCircle size={50} />, text: "High Quality" },
-            { icon: <GiStakeHammer size={50} />, text: "Customizable" },
-            { icon: <TfiHeadphoneAlt size={50} />, text: "Quick Support" },
-            { icon: <FaTruck size={50} />, text: "Fast Delivery" },
-            { icon: <FaBoxesStacked size={50} />, text: "Quality Collection" }
+            { icon: "✔️", text: "High Quality" },
+            { icon: "🔨", text: "Customizable" },
+            { icon: "🎧", text: "Quick Support" },
+            { icon: "🚚", text: "Fast Delivery" },
+            { icon: "📦", text: "Quality Collection" }
           ].map((item, i) => (
-            <motion.div
-              key={i}
-              className="why-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={() => handleInView(`why-card-${i}`)}
-              animate={
-                animatedSections[`why-card-${i}`]
-                  ? { opacity: 1, y: 0 }
-                  : {}
-              }
-              transition={{ delay: i * 0.2 }}
-              whileHover={{ scale: 1.1, rotate: 2 }}
-              viewport={{ once: true }}
-            >
+            <div key={i} className="why-card">
               <div className="icon">{item.icon}</div>
               <h3>{item.text}</h3>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </section>
+        </div>
+      </div>
 
-      {/* Modal */}
-      <QuoteModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </Wrapper>
   );
 };

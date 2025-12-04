@@ -267,6 +267,8 @@ const Wrapper = styled.section`
     .overlay h3 { font-size: 1rem; }
     .card-points li { font-size: 0.8rem; }
   }
+
+  
 `;
 
 export default Wrapper;
