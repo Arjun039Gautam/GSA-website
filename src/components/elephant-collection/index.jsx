@@ -10,6 +10,19 @@ const HorseCollection = () => {
     return url.replace("/upload/", "/upload/f_auto,q_auto/");
   };
 
+  // Keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!selectedCard) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevImage(e);
+      if (e.key === "ArrowRight") nextImage(e);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedCard, currentIndex, selectedImages]);
+
   const cards = [
     {
       id: 1,
@@ -116,10 +129,10 @@ const HorseCollection = () => {
         {cards.map((card) => (
           <div key={card.id} className="card" onClick={() => openModal(card)}>
             <div className="card-image-container">
-              <img 
-                src={card.images[0]} 
-                alt={card.title} 
-                loading="lazy" 
+              <img
+                src={card.images[0]}
+                alt={card.title}
+                loading="lazy"
               />
               {card.images.length > 1 && (
                 <span className="image-count">+{card.images.length - 1}</span>

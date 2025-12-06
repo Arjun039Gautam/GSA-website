@@ -11,6 +11,19 @@ const HorseCollection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
 
+  // Keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!selectedCard) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevImage(e);
+      if (e.key === "ArrowRight") nextImage(e);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedCard, currentIndex, selectedImages]);
+
   const cards = [
     {
       id: 1,

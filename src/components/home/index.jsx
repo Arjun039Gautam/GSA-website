@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Suspense, lazy } from "react";
 import Wrapper from "./style";
-import Gallery from "../gallery";
-import About from "../about";
-import QuoteModal from "../get-quote/QuoteModal";
+const Gallery = lazy(() => import("../gallery"));
+const About = lazy(() => import("../about"));
+const QuoteModal = lazy(() => import("../get-quote/QuoteModal"));
 
 // Lightweight Counter Component
 const Counter = ({ end }) => {
@@ -37,7 +37,7 @@ const useInViewAnimation = (ref, className = "animate") => {
           observer.unobserve(element);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
 
     observer.observe(element);
@@ -70,7 +70,16 @@ const Home = () => {
   return (
     <Wrapper>
       {/* Background Video */}
-      <video autoPlay muted loop playsInline className="bg-video">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="bg-video"
+        poster={optimize(
+          "https://res.cloudinary.com/dancodp27/video/upload/v1764852114/VN-final_dzwnxv.jpg"
+        )}
+      >
         <source
           src={optimize(
             "https://res.cloudinary.com/dancodp27/video/upload/v1764852114/VN-final_dzwnxv.mp4"
@@ -96,7 +105,7 @@ const Home = () => {
             <img
               loading="lazy"
               src="https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750123/instagram_1_mg3hjm.png"
-              alt="Instagram"
+              alt="Follow Gautam Stone Art on Instagram"
             />
           </a>
           <a
@@ -107,7 +116,7 @@ const Home = () => {
             <img
               loading="lazy"
               src="https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750100/facebook_inv66f.png"
-              alt="Facebook"
+              alt="Follow Gautam Stone Art on Facebook"
             />
           </a>
         </div>
@@ -115,12 +124,16 @@ const Home = () => {
 
       {/* About Section */}
       <div ref={aboutRef} className="section about-section">
-        <About />
+        <Suspense fallback={null}>
+          <About />
+        </Suspense>
       </div>
 
       {/* Gallery Section */}
       <div ref={galleryRef} className="section gallery-section">
-        <Gallery />
+        <Suspense fallback={null}>
+          <Gallery />
+        </Suspense>
       </div>
 
       {/* Slogan Section */}
@@ -136,6 +149,9 @@ const Home = () => {
             src={optimize(
               "https://res.cloudinary.com/dancodp27/video/upload/v1764582043/web-short-video-2_o3gmcc.mp4"
             )}
+            poster={optimize(
+              "https://res.cloudinary.com/dancodp27/video/upload/v1764582043/web-short-video-2_o3gmcc.jpg"
+            )}
             autoPlay
             loop
             muted
@@ -147,7 +163,7 @@ const Home = () => {
       {/* Connect Us */}
       <div ref={connectRef} className="section connect-us">
         <div className="connect-us-heading">
-          <h1>Come & Discuss</h1>
+          <h2>Come & Discuss</h2>
           <p>Where artisans craft dreams into reality...</p>
           <div
             className="contact-btn"
@@ -174,7 +190,7 @@ const Home = () => {
 
       {/* Why Choose Us */}
       <div ref={whyRef} className="section why-choose-us">
-        <h1>Why Choose Us</h1>
+        <h2>Why Choose Us</h2>
         <div className="why-choose-us-grid">
           {[
             { icon: "✔️", text: "High Quality" },
@@ -191,7 +207,14 @@ const Home = () => {
         </div>
       </div>
 
-      <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen && (
+        <Suspense fallback={null}>
+          <QuoteModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </Suspense>
+      )}
     </Wrapper>
   );
 };

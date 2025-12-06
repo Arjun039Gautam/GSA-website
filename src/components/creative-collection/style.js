@@ -53,12 +53,19 @@ const Wrapper = styled.section`
 
   .card {
     background: #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
     position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: #d4af37;
   }
 
   .card-image-container {
@@ -66,6 +73,7 @@ const Wrapper = styled.section`
     width: 100%;
     aspect-ratio: 1/1;
     overflow: hidden;
+    background: #f8f8f8;
   }
 
   .card-image-container img {

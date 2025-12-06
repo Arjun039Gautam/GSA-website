@@ -6,6 +6,19 @@ const HorseCollection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null); // New state for selected card
 
+  // Keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!selectedCard) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevImage(e);
+      if (e.key === "ArrowRight") nextImage(e);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedCard, currentIndex, selectedImages]);
+
   const cards = [
     {
       id: 1,
@@ -19,7 +32,7 @@ const HorseCollection = () => {
     },
     {
       id: 2,
-      images: ['/web-horse/5.png', '/web-horse/6.png','/web-horse/7.png'],
+      images: ['/web-horse/5.png', '/web-horse/6.png', '/web-horse/7.png'],
       title: "Elegant Canine Sculptures",
       desc: [
         "Natural stone polish",
@@ -180,14 +193,14 @@ const HorseCollection = () => {
       {selectedImages.length > 0 && selectedCard && (
         <div className="modal" onClick={closeModal}>
           <span className="close" onClick={closeModal}>&times;</span>
-          
+
           <img
             className="modal-content"
             src={selectedImages[currentIndex]}
             alt="Large Preview"
             onClick={(e) => e.stopPropagation()}
           />
-          
+
           {selectedImages.length > 1 && (
             <>
               <button className="prev" onClick={prevImage}>❮</button>
@@ -206,7 +219,7 @@ const HorseCollection = () => {
               </div>
             </>
           )}
-          
+
           <div className="modal-info">
             <h3>{selectedCard.title}</h3>
             <ul className="modal-points">

@@ -38,6 +38,7 @@ const Wrapper = styled.section`
     opacity: 0;
     transform: scale(0.9);
     animation: fadeInScale 1s forwards 0.5s;
+    will-change: opacity, transform;
   }
 
   .desc {
@@ -46,6 +47,7 @@ const Wrapper = styled.section`
     margin: 15px auto 0;
     opacity: 0;
     animation: fadeIn 1s forwards 0.8s;
+    will-change: opacity;
   }
 
   .social-img {
@@ -61,6 +63,7 @@ const Wrapper = styled.section`
     height: 40px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    will-change: transform;
   }
   .social-img img:hover {
     transform: scale(1.2);
@@ -70,7 +73,8 @@ const Wrapper = styled.section`
   .section {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.8s ease-out;
+    transition: all 0.6s ease-out;
+    will-change: opacity, transform;
   }
   .section.animate {
     opacity: 1;
@@ -137,6 +141,7 @@ const Wrapper = styled.section`
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.3s ease;
+    will-change: transform;
   }
   .contact-btn:hover {
     transform: scale(1.1);
@@ -161,6 +166,7 @@ const Wrapper = styled.section`
     border-radius: 10px;
     background: linear-gradient(135deg, #8b5e3c, #d2b48c);
     transition: transform 0.3s ease;
+    will-change: transform;
   }
   .connect-us-content div:hover {
     transform: translateY(-10px);
@@ -202,6 +208,7 @@ const Wrapper = styled.section`
     justify-content: center;
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    will-change: transform;
   }
   .why-card:hover {
     transform: scale(1.05) rotate(2deg);
@@ -235,6 +242,7 @@ const Wrapper = styled.section`
   }
 
   @media (max-width: 768px) {
+    .section { transition: all 0.5s ease-out; }
     .title { font-size: 36px; }
     .desc { font-size: 14px; }
     .slogan {
