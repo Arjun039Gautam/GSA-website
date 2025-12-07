@@ -23,10 +23,12 @@ import ScrollToTop from "./components/scrolltotop";
 import WhatsAppButton from "./components/whatsapp";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GoogleAnalytics from "./components/google-analytics";
 
 function App() {
   return (
     <Router>
+      <GoogleAnalytics />
       <Navbar />
       <ScrollToTop />
       <Routes>
@@ -48,7 +50,7 @@ function App() {
         <Route path="/creative-collection" element={<CreativeCollection />} />
       </Routes>
       <WhatsAppButton />
-      <ToastContainer 
+      <ToastContainer
         position="bottom-right"
         autoClose={5000}
         pauseOnHover

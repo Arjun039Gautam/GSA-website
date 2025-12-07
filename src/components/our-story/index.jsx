@@ -45,7 +45,7 @@ const OurStory = () => {
           <div className="story-content">
             <h3>Modern Legacy</h3>
             <p>
-              This timeless tradition was then elevated and transformed into the enterprise we know today. <strong>Gautam Stone Art</strong> was founded by his son, <strong>Mr. Sanjay Ji Gautam</strong>. He not only upholds this rich heritage but also brings a modern vision to the craft, ensuring our artistic creations continue to inspire. With the support of his entire family, he has turned a family legacy into a thriving venture, built on the principle that true art is born from dedication and an uncompromising commitment to quality.
+              This timeless tradition was then elevated and transformed into the enterprise we know today. <strong>Gautam Stone Art</strong> was founded by his son, <strong>Mr. Sanjay Gautam</strong>. He not only upholds this rich heritage but also brings a modern vision to the craft, ensuring our artistic creations continue to inspire. With the support of his entire family, he has turned a family legacy into a thriving venture, built on the principle that true art is born from dedication and an uncompromising commitment to quality.
             </p>
           </div>
         </div>
