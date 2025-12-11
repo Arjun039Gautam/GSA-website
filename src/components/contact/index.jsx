@@ -87,7 +87,7 @@ const Contact = () => {
 
             <ul>
               <li><IoMdCall size={20} /> +91 9829058944, +91 9521465844</li>
-              <li><HiMail size={20} /> gautamstoneart@gmail.com</li>
+              <li><HiMail size={20} /> gautamstoneart5876@gmail.com</li>
               <li><IoLocation size={20} /> 3113, Bhindo ka rasta, Chandpole bazar, Jaipur</li>
             </ul>
 

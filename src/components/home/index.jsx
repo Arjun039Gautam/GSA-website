@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect, Suspense, lazy } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import Wrapper from "./style";
-const Gallery = lazy(() => import("../gallery"));
-const About = lazy(() => import("../about"));
-const QuoteModal = lazy(() => import("../get-quote/QuoteModal"));
+import About from "../about";
+import Gallery from "../gallery";
+import QuoteModal from "../get-quote/QuoteModal";
 
 // Lightweight Counter Component
 const Counter = ({ end }) => {
@@ -37,7 +37,7 @@ const useInViewAnimation = (ref, className = "animate") => {
           observer.unobserve(element);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     observer.observe(element);
@@ -124,9 +124,7 @@ const Home = () => {
 
       {/* About Section */}
       <div ref={aboutRef} className="section about-section">
-        <Suspense fallback={null}>
-          <About />
-        </Suspense>
+        <About />
       </div>
 
       {/* Gallery Section */}

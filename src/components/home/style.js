@@ -42,7 +42,7 @@ const Wrapper = styled.section`
   }
 
   .desc {
-    font-size: 18px;
+    font-size: 18px;  
     max-width: 600px;
     margin: 15px auto 0;
     opacity: 0;

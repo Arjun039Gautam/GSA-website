@@ -52,7 +52,7 @@ const Footer = () => {
           <h3>Keep in Touch</h3>
           <div className="contact-item">
             <HiMail size={22}/> 
-            <a href="mailto:gautamstoneart@gmail.com">gautamstoneart@gmail.com</a>
+            <a href="mailto:gautamstoneart5876@gmail.com">gautamstoneart5876@gmail.com</a>
           </div>
           <div className="contact-item">
             <IoMdCall size={22}/> 
