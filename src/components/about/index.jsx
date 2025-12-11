@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Wrapper from "./style";
 import { FaAward, FaPaintBrush, FaGlobe } from "react-icons/fa";
 
 const About = () => {
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    const element = headingRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          element.classList.add("animate");
+          observer.unobserve(element);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Wrapper>
-      <div className="heading">
+      <div className="heading" ref={headingRef}>
         <h1>About Us</h1>
         <p className="tagline">Masters of Marble, Crafting Timeless Elegance</p>
       </div>

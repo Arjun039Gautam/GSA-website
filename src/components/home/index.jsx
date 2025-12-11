@@ -49,13 +49,11 @@ const useInViewAnimation = (ref, className = "animate") => {
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const aboutRef = useRef(null);
   const galleryRef = useRef(null);
   const sloganRef = useRef(null);
   const connectRef = useRef(null);
   const whyRef = useRef(null);
 
-  useInViewAnimation(aboutRef);
   useInViewAnimation(galleryRef);
   useInViewAnimation(sloganRef);
   useInViewAnimation(connectRef);
@@ -122,8 +120,8 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Section */}
-      <div ref={aboutRef} className="section about-section">
+      {/* About Section - No Animation */}
+      <div className="about-section">
         <About />
       </div>
 

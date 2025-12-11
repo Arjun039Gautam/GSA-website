@@ -1,15 +1,6 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
-/* Animations */
-const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
+// Animations Removed for Performance at User Request
 
 const Wrapper = styled.section`
   padding: 100px 5%;
@@ -21,7 +12,17 @@ const Wrapper = styled.section`
   .heading {
     text-align: center;
     margin-bottom: 70px;
-    animation: ${fadeUp} 0.8s ease forwards;
+    
+    /* Animation Start State */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+    will-change: opacity, transform;
+  }
+  
+  .heading.animate {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   h1 {
@@ -66,7 +67,7 @@ const Wrapper = styled.section`
     position: relative;
     height: 550px;
     width: 100%;
-    animation: ${fadeUp} 1s ease forwards;
+    /* Removed animation */
   }
 
   .img-grid {
@@ -137,7 +138,7 @@ const Wrapper = styled.section`
 
   /* --- Text Content --- */
   .written-content {
-    animation: ${fadeIn} 1.2s ease forwards;
+    /* Removed animation */
     padding-left: 20px;
     border-left: 1px solid #e0d8c3;
   }
@@ -172,7 +173,7 @@ const Wrapper = styled.section`
     text-align: center;
     padding: 30px 20px;
     transition: transform 0.3s ease;
-    animation: ${fadeUp} 1.4s ease forwards;
+    /* Removed animation */
     background: transparent; /* No card bg */
   }
 
