@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Wrapper from "./style";
+import ImageDetailsModal from "../modal/ImageDetailsModal";
 
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null); // New state for selected card
+  const [modalOpen, setModalOpen] = useState(false);
 
   // Keyboard navigation
   React.useEffect(() => {
@@ -21,7 +23,7 @@ const HorseCollection = () => {
 
   const cards = [
     {
-      id: 1,
+      id: 'master-1',
       images: ['/web-horse/3.png'],
       title: "Marble Lions",
       desc: [
@@ -31,7 +33,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 2,
+      id: 'master-2',
       images: ['/web-horse/5.png', '/web-horse/6.png', '/web-horse/7.png'],
       title: "Elegant Canine Sculptures",
       desc: [
@@ -41,7 +43,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 3,
+      id: 'master-3',
       images: ['/web-horse/9.png', '/web-horse/10.png'],
       title: "Pastoral Cow Figurines",
       desc: [
@@ -51,7 +53,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 4,
+      id: 'master-4',
       images: ['/web-horse/1.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -61,7 +63,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 5,
+      id: 'master-5',
       images: ['/web-horse/8.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -71,7 +73,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 6,
+      id: 'master-6',
       images: ['/web-horse/14.png', '/web-horse/15.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -81,7 +83,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 7,
+      id: 'master-7',
       images: ['/web-horse/12.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -91,7 +93,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 8,
+      id: 'master-8',
       images: ['/web-horse/2.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -101,7 +103,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 9,
+      id: 'master-9',
       images: ['/web-horse/13.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -111,7 +113,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 10,
+      id: 'master-10',
       images: ['/web-horse/11.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -121,7 +123,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 11,
+      id: 'master-11',
       images: ['/web-horse/4.png'],
       title: "Dynamic Horse Sculptures",
       desc: [
@@ -136,12 +138,14 @@ const HorseCollection = () => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
+    setModalOpen(true);
   };
 
   const closeModal = () => {
     setSelectedImages([]);
     setSelectedCard(null);
     setCurrentIndex(0);
+    setModalOpen(false);
   };
 
   const prevImage = (e) => {
@@ -190,46 +194,13 @@ const HorseCollection = () => {
         ))}
       </div>
 
-      {selectedImages.length > 0 && selectedCard && (
-        <div className="modal" onClick={closeModal}>
-          <span className="close" onClick={closeModal}>&times;</span>
-
-          <img
-            className="modal-content"
-            src={selectedImages[currentIndex]}
-            alt="Large Preview"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {selectedImages.length > 1 && (
-            <>
-              <button className="prev" onClick={prevImage}>❮</button>
-              <button className="next" onClick={nextImage}>❯</button>
-              <div className="dot-container">
-                {selectedImages.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`dot ${currentIndex === index ? 'active' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentIndex(index);
-                    }}
-                  ></span>
-                ))}
-              </div>
-            </>
-          )}
-
-          <div className="modal-info">
-            <h3>{selectedCard.title}</h3>
-            <ul className="modal-points">
-              {selectedCard.desc.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+      <ImageDetailsModal
+        isOpen={modalOpen}
+        card={selectedCard}
+        onClose={closeModal}
+        currentImageIndex={currentIndex}
+        setCurrentImageIndex={setCurrentIndex}
+      />
     </Wrapper>
   );
 };

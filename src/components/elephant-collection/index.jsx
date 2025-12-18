@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Wrapper from "./style";
+import ImageDetailsModal from "../modal/ImageDetailsModal";
 
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const optimize = (url) => {
     return url.replace("/upload/", "/upload/f_auto,q_auto/");
@@ -25,7 +27,7 @@ const HorseCollection = () => {
 
   const cards = [
     {
-      id: 1,
+      id: 'elephant-1',
       images: [
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581497/3_yf2dvc.png"),
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581478/2_vfbdpu.png"),
@@ -39,7 +41,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 2,
+      id: 'elephant-2',
       images: [
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581502/4_ehsue4.png"),
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581486/5_mk6ysf.png"),
@@ -53,7 +55,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 3,
+      id: 'elephant-3',
       images: [
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581511/8_mij93r.png"),
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581507/7_idiiif.png"),
@@ -67,7 +69,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 4,
+      id: 'elephant-4',
       images: [
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581505/10_kfr4dl.png")
       ],
@@ -79,7 +81,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 5,
+      id: 'elephant-5',
       images: [
         optimize("https://res.cloudinary.com/dancodp27/image/upload/v1764581514/11_gc3rko.png")
       ],
@@ -96,12 +98,14 @@ const HorseCollection = () => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
+    setModalOpen(true);
   };
 
   const closeModal = () => {
     setSelectedCard(null);
     setSelectedImages([]);
     setCurrentIndex(0);
+    setModalOpen(false);
   };
 
   const prevImage = (e) => {
@@ -151,48 +155,13 @@ const HorseCollection = () => {
         ))}
       </div>
 
-      {selectedImages.length > 0 && selectedCard && (
-        <div className="modal" onClick={closeModal}>
-          <span className="close" onClick={closeModal}>&times;</span>
-
-          <img
-            className="modal-content"
-            src={selectedImages[currentIndex]}
-            alt="Preview"
-            loading="lazy"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {selectedImages.length > 1 && (
-            <>
-              <button className="prev" onClick={prevImage}>❮</button>
-              <button className="next" onClick={nextImage}>❯</button>
-
-              <div className="dot-container">
-                {selectedImages.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`dot ${currentIndex === index ? 'active' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentIndex(index);
-                    }}
-                  ></span>
-                ))}
-              </div>
-            </>
-          )}
-
-          <div className="modal-info">
-            <h3>{selectedCard.title}</h3>
-            <ul className="modal-points">
-              {selectedCard.desc.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+      <ImageDetailsModal
+        isOpen={modalOpen}
+        card={selectedCard}
+        onClose={closeModal}
+        currentImageIndex={currentIndex}
+        setCurrentImageIndex={setCurrentIndex}
+      />
     </Wrapper>
   );
 };

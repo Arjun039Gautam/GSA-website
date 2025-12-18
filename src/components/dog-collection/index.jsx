@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Wrapper from "./style";
+import ImageDetailsModal from "../modal/ImageDetailsModal";
 
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   // Inject Cloudinary optimization params f_auto,q_auto
   const optimize = (url) => {
@@ -29,7 +31,7 @@ const HorseCollection = () => {
 
   const cards = [
     {
-      id: 1,
+      id: 'dog-1',
       images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581409/8_ty4dxm.png')],
       title: "Marble Dog Sculpture",
       desc: [
@@ -39,7 +41,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 2,
+      id: 'dog-2',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581392/4_dmyctd.png'),
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581398/3_wnct3p.png')
@@ -52,7 +54,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 3,
+      id: 'dog-3',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581400/5_jlj0p6.png'),
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581409/6_cbkgox.png')
@@ -65,7 +67,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 4,
+      id: 'dog-4',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581389/7_btkvwf.png')
       ],
@@ -77,7 +79,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 5,
+      id: 'dog-5',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581389/2_rq6gw1.png'),
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581367/1_nc1rwd.png')
@@ -90,7 +92,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 6,
+      id: 'dog-6',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581404/9_kutuqm.png')
       ],
@@ -107,12 +109,14 @@ const HorseCollection = () => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
+    setModalOpen(true);
   };
 
   const closeModal = () => {
     setSelectedImages([]);
     setSelectedCard(null);
     setCurrentIndex(0);
+    setModalOpen(false);
   };
 
   const prevImage = (e) => {
@@ -165,48 +169,13 @@ const HorseCollection = () => {
         ))}
       </div>
 
-      {selectedImages.length > 0 && selectedCard && (
-        <div className="modal" onClick={closeModal}>
-          <span className="close" onClick={closeModal}>&times;</span>
-
-          <img
-            className="modal-content"
-            src={selectedImages[currentIndex]}
-            alt="Large Preview"
-            loading="lazy"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {selectedImages.length > 1 && (
-            <>
-              <button className="prev" onClick={prevImage}>❮</button>
-              <button className="next" onClick={nextImage}>❯</button>
-
-              <div className="dot-container">
-                {selectedImages.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`dot ${currentIndex === index ? 'active' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentIndex(index);
-                    }}
-                  ></span>
-                ))}
-              </div>
-            </>
-          )}
-
-          <div className="modal-info">
-            <h3>{selectedCard.title}</h3>
-            <ul className="modal-points">
-              {selectedCard.desc.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+      <ImageDetailsModal
+        isOpen={modalOpen}
+        card={selectedCard}
+        onClose={closeModal}
+        currentImageIndex={currentIndex}
+        setCurrentImageIndex={setCurrentIndex}
+      />
     </Wrapper>
   );
 };

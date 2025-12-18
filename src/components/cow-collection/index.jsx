@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Wrapper from "./style";
+import ImageDetailsModal from "../modal/ImageDetailsModal";
 
 const HorseCollection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const optimize = (url) => {
     // inject f_auto,q_auto if not included
@@ -29,7 +31,7 @@ const HorseCollection = () => {
 
   const cards = [
     {
-      id: 1,
+      id: 'cow-1',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581313/1_ybxogm.png')
       ],
@@ -37,7 +39,7 @@ const HorseCollection = () => {
       desc: ["Polished marble finish", "Cow and calf motif", "Custom size available"]
     },
     {
-      id: 2,
+      id: 'cow-2',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581299/2_apdxpf.png'),
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581300/3_qzfgjl.png')
@@ -50,7 +52,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 3,
+      id: 'cow-3',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581314/4_l2hqok.png'),
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581314/5_exq7ib.png')
@@ -63,7 +65,7 @@ const HorseCollection = () => {
       ]
     },
     {
-      id: 4,
+      id: 'cow-4',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581308/6_jmiqwi.png'),
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581313/7_p3phwz.png')
@@ -72,7 +74,7 @@ const HorseCollection = () => {
       desc: ["Polished marble", "Hand-painted accent"]
     },
     {
-      id: 5,
+      id: 'cow-5',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581316/8_z99ubf.png')
       ],
@@ -80,7 +82,7 @@ const HorseCollection = () => {
       desc: ["Premium marble carve", "Mother-calf intimacy", "Smooth classic finish"]
     },
     {
-      id: 6,
+      id: 'cow-6',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581322/9_gco6xc.png')
       ],
@@ -88,7 +90,7 @@ const HorseCollection = () => {
       desc: ["Classic marble craft", "Mother-calf in unity", "Timeless natural shine"]
     },
     {
-      id: 7,
+      id: 'cow-7',
       images: [
         optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581320/10_r3qbdt.png')
       ],
@@ -101,12 +103,14 @@ const HorseCollection = () => {
     setSelectedCard(card);
     setSelectedImages(card.images);
     setCurrentIndex(0);
+    setModalOpen(true);
   };
 
   const closeModal = () => {
     setSelectedImages([]);
     setSelectedCard(null);
     setCurrentIndex(0);
+    setModalOpen(false);
   };
 
   const prevImage = (e) => {
@@ -159,47 +163,13 @@ const HorseCollection = () => {
         ))}
       </div>
 
-      {selectedImages.length > 0 && selectedCard && (
-        <div className="modal" onClick={closeModal}>
-          <span className="close" onClick={closeModal}>&times;</span>
-
-          <img
-            className="modal-content"
-            src={selectedImages[currentIndex]}
-            alt="Large Preview"
-            loading="lazy"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {selectedImages.length > 1 && (
-            <>
-              <button className="prev" onClick={prevImage}>❮</button>
-              <button className="next" onClick={nextImage}>❯</button>
-              <div className="dot-container">
-                {selectedImages.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`dot ${currentIndex === index ? 'active' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentIndex(index);
-                    }}
-                  ></span>
-                ))}
-              </div>
-            </>
-          )}
-
-          <div className="modal-info">
-            <h3>{selectedCard.title}</h3>
-            <ul className="modal-points">
-              {selectedCard.desc.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+      <ImageDetailsModal
+        isOpen={modalOpen}
+        card={selectedCard}
+        onClose={closeModal}
+        currentImageIndex={currentIndex}
+        setCurrentImageIndex={setCurrentIndex}
+      />
     </Wrapper>
   );
 };
