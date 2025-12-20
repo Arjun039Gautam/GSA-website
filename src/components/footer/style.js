@@ -106,34 +106,93 @@ const Wrapper = styled.footer`
 
   /* 🌟 Tablet view */
   @media (max-width: 900px) {
-    padding: 50px 25px 20px;
+    padding: 40px 10px 15px;
 
     .footer-container {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       text-align: center;
+    }
+
+    .footer-section {
+      max-width: 90%;
     }
 
     .footer-section h2,
     .footer-section h3 {
-      font-size: 16px;
+      font-size: 15px;
+      margin-bottom: 8px;
     }
 
     .footer-section p,
     .footer-section a {
       font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer-logo {
+      width: 100px;
+      margin-bottom: 10px;
     }
 
     .about {
-      grid-column: span 2;
+      text-align: center;
+    }
+
+    .nav {
+      text-align: center;
+    }
+
+    .collections {
+      text-align: center;
     }
 
     .contact {
-      grid-column: span 2;
+      text-align: center;
+    }
+
+    .contact-item {
+      justify-content: center;
+      margin: 8px auto;
+      font-size: 13px;
     }
 
     .social-icons {
       justify-content: center;
+      margin-top: 15px;
+      gap: 14px;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+    }
+
+    /* ✅ Compact, centered Browse & Collections */
+    .nav ul,
+    .collections ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px 25px;
+      padding: 0;
+      margin: 8px 0 0 0;
+    }
+
+    .nav ul li,
+    .collections ul li {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .footer-bottom {
+      font-size: 12px;
+      padding-top: 15px;
+      margin-top: 15px;
     }
   }
 
@@ -167,23 +226,19 @@ const Wrapper = styled.footer`
 
     .contact-item {
       justify-content: center;
-      text-align: center;
-      flex-wrap: wrap;
+      margin: 8px auto;
+      font-size: 13px;
     }
 
     .social-icons {
       justify-content: center;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     /* ✅ Compact, centered Browse & Collections */
     .nav,
     .collections {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
+      text-align: center;
     }
 
     .nav ul,
@@ -191,9 +246,9 @@ const Wrapper = styled.footer`
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px 20px;
+      gap: 15px 25px;
       padding: 0;
-      margin-top: 5px;
+      margin: 8px 0 0 0;
     }
 
     .nav ul li,
