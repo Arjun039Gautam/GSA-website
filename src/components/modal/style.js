@@ -35,6 +35,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  box-sizing: border-box;
   background: linear-gradient(135deg, #ffffff 0%, #faf9f7 50%, #f5f3f0 100%);
   border-radius: 28px;
   box-shadow: 
@@ -74,6 +75,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const ImageSection = styled.div`
+  box-sizing: border-box;
   flex: 1;
   position: relative;
   display: flex;
@@ -102,6 +104,7 @@ export const ImageSection = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
+  box-sizing: border-box;
   position: relative;
   display: flex;
   align-items: center;
@@ -120,6 +123,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const StyledImage = styled.img`
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -145,6 +149,7 @@ export const StyledImage = styled.img`
 `;
 
 export const DetailsSection = styled.div`
+  box-sizing: border-box;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -165,8 +170,20 @@ export const DetailsSection = styled.div`
     }
   }
 
+  /* make the inner container full width and allow centering on small screens
+     while keeping description text left-aligned */
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   @media (max-width: 768px) {
     padding: 40px 35px;
+    > div {
+      align-items: center;
+    }
   }
 
   @media (max-width: 480px) {
@@ -222,6 +239,7 @@ export const CloseButton = styled.button`
 `;
 
 export const Title = styled.h2`
+  min-width: 0;
   font-size: 36px;
   color: #3d2f24;
   margin: 0 0 16px 0;
@@ -256,6 +274,8 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.div`
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: #5a4a3a;
   font-size: 16px;
   line-height: 1.9;
@@ -277,25 +297,27 @@ export const Description = styled.div`
 
   & > div {
     margin-bottom: 16px;
-    padding-left: 0;
+    padding-left: 28px; /* reserve space for checkmark inside padding */
     position: relative;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     text-align: left;
 
     &:hover {
-      padding-left: 6px;
+      transform: translateX(4px);
       color: #3d2f24;
     }
 
     &:before {
       content: "✓";
       position: absolute;
-      left: -24px;
+      left: 8px; /* place checkmark inside left padding to avoid overflow */
+      top: 0;
       color: #d4a15e;
       font-weight: bold;
       font-size: 18px;
-      animation: checkmark 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      line-height: 1.1;
+      animation: checkmark 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     @keyframes checkmark {
@@ -304,7 +326,7 @@ export const Description = styled.div`
         transform: scale(0) rotate(-45deg);
       }
       50% {
-        transform: scale(1.2);
+        transform: scale(1.15);
       }
       100% {
         opacity: 1;
@@ -323,11 +345,11 @@ export const Description = styled.div`
     line-height: 1.8;
 
     & > div {
-      padding-left: 0;
+      padding-left: 24px;
       margin-bottom: 14px;
 
       &:before {
-        left: -26px;
+        left: 6px;
       }
     }
   }
@@ -336,11 +358,11 @@ export const Description = styled.div`
     font-size: 14px;
 
     & > div {
-      padding-left: 0;
+      padding-left: 22px;
       margin-bottom: 12px;
 
       &:before {
-        left: -24px;
+        left: 6px;
         font-size: 16px;
       }
     }

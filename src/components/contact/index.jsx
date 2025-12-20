@@ -5,8 +5,9 @@ import { IoMdCall } from "react-icons/io";
 import { HiMail } from "react-icons/hi";
 import { IoLocation } from "react-icons/io5";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwoVQ7dFHkIvLNCCC-XBGhMjiDwg7odA32xEmv3fEemrvv3NmTAlC_axcIJz9Ehc2pZBg/exec";
+const WEB_APP_URL = process.env.REACT_APP_WEB_APP_URL;
 
 const Contact = () => {
 
@@ -19,7 +20,7 @@ const Contact = () => {
     setLoading(true); // start loader
 
     const payload = new URLSearchParams();
-    payload.append("source", "ContactForm");
+    payload.append("source", "contact");
     payload.append("firstName", form.firstName.value);
     payload.append("lastName", form.lastName.value);
     payload.append("email", form.email.value);
@@ -28,14 +29,9 @@ const Contact = () => {
     payload.append("message", form.message.value);
 
     try {
-      const res = await fetch(WEB_APP_URL, {
-        method: "POST",
-        body: payload,
-      });
+      const res = await axios.post(WEB_APP_URL, payload);
 
-      const json = await res.json();
-
-      if (json.status === "success") {
+      if (res.data.status === "success") {
         toast.success("Message sent successfully!");
         form.reset();
       } else {

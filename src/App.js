@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
@@ -24,8 +24,25 @@ import WhatsAppButton from "./components/whatsapp";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleAnalytics from "./components/google-analytics";
+import QuoteRequestModal from "./components/get-quote/QuoteRequestModal";
 
 function App() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quoteData, setQuoteData] = useState({});
+
+  useEffect(() => {
+    const handler = (e) => {
+      const d = e.detail || {};
+      setQuoteData({
+        productImage: d.currentImage || (d.card && d.card.images && d.card.images[0]) || null,
+        productId: d.card?.id || null,
+      });
+      setQuoteOpen(true);
+    };
+
+    window.addEventListener("openQuote", handler);
+    return () => window.removeEventListener("openQuote", handler);
+  }, []);
   return (
     <Router>
       <GoogleAnalytics />
@@ -50,6 +67,13 @@ function App() {
         <Route path="/creative-collection" element={<CreativeCollection />} />
       </Routes>
       <WhatsAppButton />
+      <QuoteRequestModal
+        isOpen={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+        productImage={quoteData.productImage}
+        productId={quoteData.productId}
+        submitUrl={process.env.REACT_APP_QUOTE_PROXY || 'http://localhost:4000/quote'}
+      />
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

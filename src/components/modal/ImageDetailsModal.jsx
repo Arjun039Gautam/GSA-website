@@ -57,11 +57,19 @@ const ImageDetailsModal = ({
   };
 
   const handleGetQuote = () => {
-    // Scroll to get-quote section or open quote modal
-    const quoteSection = document.getElementById("get-quote");
-    if (quoteSection) {
-      onClose();
-      quoteSection.scrollIntoView({ behavior: "smooth" });
+    // Close this modal and ask app to open the Quote modal with product data
+    const payload = {
+      card,
+      currentImageIndex,
+      currentImage,
+    };
+    onClose();
+    try {
+      window.dispatchEvent(new CustomEvent("openQuote", { detail: payload }));
+    } catch (err) {
+      // fallback: scroll to get-quote section if no listener
+      const quoteSection = document.getElementById("get-quote");
+      if (quoteSection) quoteSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 

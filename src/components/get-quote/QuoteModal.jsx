@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbwoVQ7dFHkIvLNCCC-XBGhMjiDwg7odA32xEmv3fEemrvv3NmTAlC_axcIJz9Ehc2pZBg/exec";
 
 const Backdrop = styled.div`
   position: fixed;
@@ -124,45 +123,50 @@ const ModalBox = styled.div`
 
 const QuoteModal = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
+  const WEB_APP_URL = process.env.REACT_APP_WEB_APP_URL;
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
+  e.preventDefault();
+  const form = e.target;
 
-    setLoading(true);
+  setLoading(true);
 
-    const payload = new URLSearchParams();
-    payload.append("source", "Quote");
-    payload.append("name", form.name.value);
-    payload.append("email", form.email.value);
-    payload.append("phone", form.phone.value);
-    payload.append("subject", "Quote Request");
-    payload.append("message", form.message.value);
+  // ✅ FULL NAME SPLIT FIX
+  const fullName = form.name.value.trim();
+  const parts = fullName.split(" ");
 
-    try {
-      const res = await fetch(WEB_APP_URL, {
-        method: "POST",
-        body: payload,
-      });
+  const firstName = parts[0] || "";
+  const lastName = parts.slice(1).join(" ") || "";
 
-      const json = await res.json();
+  const payload = new URLSearchParams();
+  payload.append("source", "quote_simple");
+  payload.append("firstName", firstName);   // ✅
+  payload.append("lastName", lastName);     // ✅
+  payload.append("email", form.email.value);
+  payload.append("phone", form.phone.value);
+  payload.append("subject", "Quote Request");
+  payload.append("message", form.message.value);
 
-      if (json.status === "success") {
-        toast.success("Quote request submitted!");
-        form.reset();
-        onClose();
-      } else {
-        toast.error("Server error! Please try again.");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to submit form!");
-    } finally {
-      setLoading(false);
+  try {
+    const res = await axios.post(WEB_APP_URL, payload);
+
+    if (res.data.status === "success") {
+      toast.success("Quote request submitted!");
+      form.reset();
+      onClose();
+    } else {
+      toast.error("Server error! Please try again.");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to submit form!");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <Backdrop>
