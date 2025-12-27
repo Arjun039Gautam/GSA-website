@@ -90,8 +90,7 @@ const Home = () => {
       <div className="overlay">
         <h1 className="title">GAUTAM STONE ART</h1>
         <p className="desc">
-          We make all types of handicraft items in marble and specialize in
-          animal statues.
+          Gautam Stone Art is a Jaipur-based manufacturer specializing in handcrafted marble animal statues and modern stone sculptures.
         </p>
 
         <div className="social-img">

@@ -15,7 +15,7 @@ const Footer = () => {
           <img src='https://res.cloudinary.com/dancodp27/image/upload/f_auto,q_auto/v1764750124/for_now_final_logo_an7xps.png' alt="Logo" className="footer-logo" />
           <h2>Gautam Stone Art</h2>
           <p>
-            125 years of artistry, carrying forward a timeless vision with modern elegance.
+            Gautam Stone Art is a leading marble sculpture manufacturer in Jaipur, India, specializing in marble animal statues, modern art and custom marble work.
           </p>
         </div>
 
