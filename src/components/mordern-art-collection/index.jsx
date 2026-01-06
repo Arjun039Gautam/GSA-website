@@ -45,7 +45,7 @@ const HorseCollection = () => {
     },
     {
       id: 'mordern-4',
-      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1764581193/4_v1sqmd.png')],
+      images: [optimize('https://res.cloudinary.com/dancodp27/image/upload/v1767620090/13_nhvmfq.png')],
       title: "Marble Flame Abstract",
       desc: ["Fluid modern art piece", "Soft textured surface", "Inspired by rising flame"]
     },
